@@ -1,26 +1,348 @@
 @import "tailwindcss";
 
+/* ============================================
+   ELYSIAN HOUSE — Design System
+   ============================================ */
+
+/* --------------------------------------------
+   CSS Custom Properties (Design Tokens)
+   -------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Palette — Light Mode */
+  --color-stone: #2C2825;
+  --color-linen: #F7F5F2;
+  --color-clay: #C4A98C;
+  
+  /* Supporting Palette */
+  --color-fog: #E8E4DF;
+  --color-dusk: #8B7E74;
+  --color-petal: #D4B5A0;
+  
+  /* Functional Colors */
+  --color-ink: #1A1817;
+  --color-error: #9B4D4D;
+  --color-success: #6B7B6B;
+  
+  /* Typography */
+  --font-serif: var(--font-cormorant), Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  
+  /* Spacing Scale (8px base) */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 1rem;      /* 16px */
+  --space-md: 1.5rem;    /* 24px */
+  --space-lg: 3rem;      /* 48px */
+  --space-xl: 5rem;      /* 80px */
+  --space-2xl: 7.5rem;   /* 120px */
+  --space-3xl: 10rem;    /* 160px */
+  
+  /* Section Spacing */
+  --section-sm: 4rem;
+  --section-md: 6rem;
+  --section-lg: 8rem;
+  --section-xl: 10rem;
+  
+  /* Max Widths */
+  --max-site: 75rem;     /* 1200px */
+  --max-content: 60rem;  /* 960px */
+  --max-narrow: 45rem;   /* 720px */
+  
+  /* Transitions */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 400ms;
+  --duration-reveal: 600ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
+/* --------------------------------------------
+   Dark Mode Colors
+   Warm, muted palette — not harsh black/white
+   -------------------------------------------- */
+.dark {
+  /* Primary Palette — Dark Mode */
+  --color-stone: #F5F3F0;        /* Light warm white for text */
+  --color-linen: #1C1A18;        /* Deep warm charcoal for background */
+  --color-clay: #D4B89C;         /* Slightly lighter clay for accents */
+  
+  /* Supporting Palette */
+  --color-fog: #262320;          /* Darker section backgrounds */
+  --color-dusk: #9A8E84;         /* Lighter muted for secondary text */
+  --color-petal: #BFA58C;        /* Muted petal for hovers */
+  
+  /* Functional Colors */
+  --color-ink: #FAF8F6;          /* Near white for high contrast */
+  --color-error: #C47070;        /* Lighter error for dark bg */
+  --color-success: #8A9B8A;      /* Lighter success for dark bg */
+}
+
+/* --------------------------------------------
+   Tailwind Theme Extension
+   -------------------------------------------- */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-stone: var(--color-stone);
+  --color-linen: var(--color-linen);
+  --color-clay: var(--color-clay);
+  --color-fog: var(--color-fog);
+  --color-dusk: var(--color-dusk);
+  --color-petal: var(--color-petal);
+  --color-ink: var(--color-ink);
+  --color-error: var(--color-error);
+  --color-success: var(--color-success);
+  
+  /* Font Families */
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+  
+  /* Font Sizes - Display */
+  --text-display-lg: 4.5rem;
+  --text-display: 3rem;
+  --text-display-sm: 2.25rem;
+  
+  /* Font Sizes - Body */
+  --text-body-lg: 1.375rem;
+  --text-body: 1.125rem;
+  --text-body-sm: 1rem;
+  --text-caption: 0.875rem;
+  
+  /* Line Heights */
+  --leading-display: 1.1;
+  --leading-heading: 1.2;
+  --leading-body: 1.7;
+  
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  
+  /* Spacing */
+  --spacing-section-sm: var(--section-sm);
+  --spacing-section: var(--section-md);
+  --spacing-section-lg: var(--section-lg);
+  --spacing-section-xl: var(--section-xl);
+  
+  /* Max Widths */
+  --container-site: var(--max-site);
+  --container-content: var(--max-content);
+  --container-narrow: var(--max-narrow);
+  
+  /* Transitions */
+  --transition-fast: var(--duration-fast) var(--ease-out);
+  --transition-base: var(--duration-base) var(--ease-out);
+  --transition-slow: var(--duration-slow) var(--ease-out);
+  --transition-reveal: var(--duration-reveal) var(--ease-out);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* --------------------------------------------
+   Base Styles
+   -------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-linen);
+  color: var(--color-stone);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --------------------------------------------
+   Typography Base
+   -------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-heading);
+  margin: 0;
+  color: var(--color-stone);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  line-height: var(--leading-display);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+p {
+  margin: 0 0 1.5em;
+  max-width: 65ch;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --------------------------------------------
+   Selection
+   -------------------------------------------- */
+::selection {
+  background-color: var(--color-clay);
+  color: var(--color-linen);
+}
+
+::-moz-selection {
+  background-color: var(--color-clay);
+  color: var(--color-linen);
+}
+
+/* --------------------------------------------
+   Focus States
+   -------------------------------------------- */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-clay);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------
+   Scrollbar (Subtle)
+   -------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-fog);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-dusk);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-stone);
+}
+
+/* --------------------------------------------
+   Utility Classes
+   -------------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* --------------------------------------------
+   Button Hover States
+   -------------------------------------------- */
+/* Primary button hover - darken */
+[data-variant="primary"]:hover:not(:disabled) {
+  background-color: var(--color-ink) !important;
+}
+
+/* Secondary button hover - fill */
+[data-variant="secondary"]:hover:not(:disabled) {
+  background-color: var(--color-stone) !important;
+  color: var(--color-linen) !important;
+}
+
+/* Ghost button hover */
+[data-variant="ghost"]:hover:not(:disabled) {
+  color: var(--color-dusk) !important;
+}
+
+/* Focus ring colors */
+[data-variant]:focus-visible {
+  --tw-ring-color: var(--color-clay);
+  --tw-ring-offset-color: var(--color-linen);
+}
+
+/* --------------------------------------------
+   Animation Utilities
+   -------------------------------------------- */
+.animate-fade-up {
+  animation: fade-up var(--duration-reveal) var(--ease-out) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in var(--duration-slow) var(--ease-out) forwards;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
