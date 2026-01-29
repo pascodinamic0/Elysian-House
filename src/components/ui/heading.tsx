@@ -18,11 +18,11 @@ interface HeadingProps {
 
 const sizeClasses: Record<HeadingSize, string> = {
   display:
-    "text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.1] tracking-tight",
+    "text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.1] tracking-[-0.02em]",
   section:
-    "text-[clamp(1.75rem,4vw,3rem)] leading-[1.15] tracking-tight",
+    "text-[clamp(1.75rem,4vw,3rem)] leading-[1.2] tracking-[-0.015em]",
   subsection:
-    "text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.2] tracking-tight",
+    "text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.25] tracking-[-0.01em]",
 };
 
 /**
@@ -44,7 +44,7 @@ export function Heading({
   return (
     <Tag
       className={cn(
-        "font-serif font-normal text-[var(--color-stone)] transition-colors duration-300",
+        "font-serif font-normal text-[var(--color-stone)] transition-colors duration-300 mb-0",
         sizeClasses[size],
         balance && "text-balance",
         className

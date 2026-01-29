@@ -26,10 +26,12 @@ export function Link({
   children,
 }: LinkProps) {
   const baseClasses = cn(
-    "text-[var(--color-stone)] underline-offset-4",
-    "hover:underline",
-    "transition-colors duration-150 ease-out",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2",
+    "text-[var(--color-stone)]",
+    "underline decoration-[var(--color-dusk)]/30 underline-offset-4",
+    "hover:text-[var(--color-dusk)] hover:decoration-[var(--color-dusk)]/60",
+    "transition-base",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)]",
+    "active:text-[var(--color-stone)]",
     className
   );
 
@@ -67,9 +69,10 @@ export function NavLink({
       href={href}
       className={cn(
         "text-[var(--color-stone)] font-sans text-[0.9375rem] font-medium",
-        "transition-colors duration-150 ease-out",
+        "transition-base",
         "hover:text-[var(--color-dusk)]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)]",
+        "active:text-[var(--color-stone)]",
         active && "text-[var(--color-dusk)]",
         className
       )}

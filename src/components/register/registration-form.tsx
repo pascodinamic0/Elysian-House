@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import {
-  Stack,
   Button,
   Input,
   Textarea,
@@ -116,77 +115,84 @@ export function RegistrationForm({ onSuccess }: RegistrationFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="w-full">
-      <Stack gap="lg" align="stretch">
-        <Input
-          label={form.nameLabel}
-          name="name"
-          type="text"
-          placeholder={form.namePlaceholder}
-          value={formData.name}
-          onChange={handleChange}
-          error={errors.name}
-          required
-          autoComplete="name"
-        />
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="w-full p-8 md:p-12 rounded-2xl shadow-md transition-base flex flex-col gap-12"
+      style={{
+        background: "var(--glass-bg)",
+        backdropFilter: "blur(var(--glass-blur))",
+        border: "1px solid var(--glass-border)",
+      }}
+    >
+      <Input
+        label={form.nameLabel}
+        name="name"
+        type="text"
+        placeholder={form.namePlaceholder}
+        value={formData.name}
+        onChange={handleChange}
+        error={errors.name}
+        required
+        autoComplete="name"
+      />
 
-        <Input
-          label={form.emailLabel}
-          name="email"
-          type="email"
-          placeholder={form.emailPlaceholder}
-          value={formData.email}
-          onChange={handleChange}
-          error={errors.email}
-          required
-          autoComplete="email"
-        />
+      <Input
+        label={form.emailLabel}
+        name="email"
+        type="email"
+        placeholder={form.emailPlaceholder}
+        value={formData.email}
+        onChange={handleChange}
+        error={errors.email}
+        required
+        autoComplete="email"
+      />
 
-        <Textarea
-          label={form.messageLabel}
-          name="message"
-          placeholder={form.messagePlaceholder}
-          value={formData.message}
-          onChange={handleChange}
-          rows={4}
-          maxLength={500}
-        />
+      <Textarea
+        label={form.messageLabel}
+        name="message"
+        placeholder={form.messagePlaceholder}
+        value={formData.message}
+        onChange={handleChange}
+        rows={4}
+        maxLength={500}
+      />
 
-        <Select
-          label={form.sourceLabel}
-          name="source"
-          options={form.sourceOptions}
-          value={formData.source}
-          onChange={handleChange}
-        />
+      <Select
+        label={form.sourceLabel}
+        name="source"
+        options={form.sourceOptions}
+        value={formData.source}
+        onChange={handleChange}
+      />
 
-        <Checkbox
-          label={form.consentLabel}
-          name="consent"
-          checked={formData.consent}
-          onChange={handleChange}
-          error={errors.consent}
-          required
-        />
+      <Checkbox
+        label={form.consentLabel}
+        name="consent"
+        checked={formData.consent}
+        onChange={handleChange}
+        error={errors.consent}
+        required
+      />
 
-        {errors.form && (
-          <p className="text-[var(--color-error)] text-[0.9375rem]" role="alert">
-            {errors.form}
-          </p>
-        )}
+      {errors.form && (
+        <p className="text-[var(--color-error)] text-[0.9375rem]" role="alert">
+          {errors.form}
+        </p>
+      )}
 
-        <div className="pt-4 flex justify-center">
-          <Button
-            type="submit"
-            size="large"
-            loading={isSubmitting}
-            disabled={isSubmitting}
-            className="w-full sm:w-auto"
-          >
-            {isSubmitting ? form.submittingButton : form.submitButton}
-          </Button>
-        </div>
-      </Stack>
+      <div className="pt-4 flex justify-center">
+        <Button
+          type="submit"
+          size="large"
+          loading={isSubmitting}
+          disabled={isSubmitting}
+          className="w-full sm:w-auto"
+        >
+          {isSubmitting ? form.submittingButton : form.submitButton}
+        </Button>
+      </div>
     </form>
   );
 }

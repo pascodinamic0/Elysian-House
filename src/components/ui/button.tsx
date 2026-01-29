@@ -15,6 +15,8 @@ interface ButtonBaseProps {
   children: React.ReactNode;
   /** Disabled state */
   disabled?: boolean;
+  /** Pulse animation effect */
+  pulse?: boolean;
 }
 
 interface ButtonAsButton extends ButtonBaseProps {
@@ -41,8 +43,8 @@ interface ButtonAsLink extends ButtonBaseProps {
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const sizeClasses: Record<ButtonSize, string> = {
-  default: "px-8 py-4 text-[1rem]",
-  large: "px-10 py-5 text-[1.125rem]",
+  default: "px-8 py-4 text-[1rem] rounded-xl",
+  large: "px-10 py-5 text-[1.125rem] rounded-2xl",
 };
 
 /**
@@ -60,18 +62,21 @@ export function Button(props: ButtonProps) {
     className,
     children,
     disabled,
+    pulse,
   } = props;
 
   const baseClasses = cn(
     "inline-flex items-center justify-center",
     "font-sans font-medium",
-    "transition-all duration-200 ease-out",
-    "disabled:opacity-50 disabled:pointer-events-none",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+    "transition-base",
+    "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)]",
+    "active:scale-[0.98]",
     sizeClasses[size],
-    // Variant-specific layout classes (not colors)
-    variant === "ghost" && "underline underline-offset-4",
-    variant === "secondary" && "border",
+    variant === "ghost" && "underline underline-offset-4 rounded-none",
+    variant === "secondary" && "border-2",
+    variant !== "ghost" && "hover:shadow-md",
+    pulse && "animate-button-pulse",
     className
   );
 

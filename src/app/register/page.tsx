@@ -21,12 +21,12 @@ export default function RegisterPage() {
     <>
       <Header />
       <main id="main-content" className="pt-20 md:pt-24">
-        <Section spacing="large">
+        <Section spacing="large" background="primary">
           <Container width="narrow">
             {isSubmitted ? (
               <Confirmation />
             ) : (
-              <Stack gap="xl">
+              <Stack gap="xl" align="center">
                 {/* Header */}
                 <Stack gap="md" align="center" className="text-center">
                   <ScrollReveal>

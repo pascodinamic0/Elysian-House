@@ -42,10 +42,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             className={cn(
               "mt-1 h-5 w-5 shrink-0",
               "border border-[var(--color-dusk)]/30",
-              "bg-transparent",
-              "transition-colors duration-200",
+              "bg-[var(--color-fog)]/30 dark:bg-[var(--color-fog)]/20",
+              "rounded",
+              "transition-base",
               "checked:bg-[var(--color-stone)] checked:border-[var(--color-stone)]",
-              "focus:ring-2 focus:ring-[var(--color-clay)] focus:ring-offset-2 focus:ring-offset-[var(--color-linen)]",
+              "focus:ring-2 focus:ring-[var(--color-clay)] focus:ring-offset-2 focus:ring-offset-[var(--color-linen)] focus:outline-none",
+              "hover:border-[var(--color-dusk)]/50",
               "disabled:opacity-50 disabled:cursor-not-allowed",
               error && "border-[var(--color-error)]"
             )}

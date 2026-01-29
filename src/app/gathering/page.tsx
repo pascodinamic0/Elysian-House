@@ -5,8 +5,6 @@ import {
   Section,
   Heading,
   Button,
-  Stack,
-  Spacer,
   Caption,
 } from "@/components/ui";
 import { ScrollReveal } from "@/components/home/scroll-reveal";
@@ -23,6 +21,9 @@ export const metadata: Metadata = {
 };
 
 export default function GatheringPage() {
+  // #region agent log
+  fetch('http://127.0.0.1:7243/ingest/660c50a2-335d-4d85-98ac-6f635e5fd7bf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'page.tsx:25',message:'GatheringPage render start',data:{hasHero:!!gatheringPage.hero,hasWhatItIs:!!gatheringPage.whatItIs,hasWhatHappens:!!gatheringPage.whatHappens,hasWhoItsFor:!!gatheringPage.whoItsFor,componentCount:4},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  // #endregion
   const { hero, whatItIs, whatHappens, whoItsFor } = gatheringPage;
 
   return (
@@ -31,20 +32,18 @@ export default function GatheringPage() {
       <main id="main-content" className="pt-20 md:pt-24">
         {/* Hero */}
         <Section spacing="large">
-          <Container width="narrow" className="text-center">
-            <Stack gap="md" align="center">
-              <ScrollReveal>
-                <Caption className="uppercase tracking-[0.15em]">
-                  {hero.subtitle}
-                </Caption>
-              </ScrollReveal>
-              <ScrollReveal delay={0.1}>
-                <Heading level={1} size="display">
-                  {hero.headline}
-                </Heading>
-              </ScrollReveal>
-            </Stack>
-          </Container>
+          <div className="mx-auto w-full px-6 md:px-12 max-w-[45rem] text-center flex flex-col gap-6 items-center">
+            <ScrollReveal>
+              <Caption className="uppercase tracking-[0.15em]">
+                {hero.subtitle}
+              </Caption>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <Heading level={1} size="display">
+                {hero.headline}
+              </Heading>
+            </ScrollReveal>
+          </div>
         </Section>
 
         {/* What It Is */}

@@ -47,15 +47,17 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           rows={rows}
           className={cn(
             "w-full px-4 py-3",
-            "bg-transparent",
+            "bg-[var(--color-fog)]/30 dark:bg-[var(--color-fog)]/20",
             "border border-[var(--color-dusk)]/30",
+            "rounded-lg",
             "font-sans text-[1rem] text-[var(--color-stone)]",
             "placeholder:text-[var(--color-dusk)]/50",
-            "transition-colors duration-200",
-            "focus:border-[var(--color-clay)] focus:outline-none",
+            "transition-base",
+            "focus:border-[var(--color-clay)] focus:outline-none focus:ring-2 focus:ring-[var(--color-clay)]/20 focus:bg-[var(--color-fog)]/40 dark:focus:bg-[var(--color-fog)]/30",
+            "hover:border-[var(--color-dusk)]/50",
             "disabled:opacity-50 disabled:cursor-not-allowed",
             "resize-y min-h-[120px]",
-            error && "border-[var(--color-error)] focus:border-[var(--color-error)]",
+            error && "border-[var(--color-error)] focus:border-[var(--color-error)] focus:ring-[var(--color-error)]/20",
             className
           )}
           aria-invalid={error ? "true" : undefined}

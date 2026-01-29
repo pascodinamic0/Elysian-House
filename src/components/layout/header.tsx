@@ -46,8 +46,15 @@ export function Header() {
           {/* Wordmark */}
           <Link
             href="/"
-            className="font-serif text-[1.125rem] md:text-[1.25rem] tracking-[0.05em] uppercase text-[var(--color-stone)] hover:text-[var(--color-dusk)] transition-colors"
+            className="wordmark flex items-center gap-2 text-[1.125rem] md:text-[1.25rem] hover:text-[var(--color-dusk)] transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)] rounded"
           >
+            <img
+              src="/favicon.svg"
+              alt="Elysian House Logo"
+              width={24}
+              height={24}
+              className="w-6 h-6 md:w-7 md:h-7"
+            />
             {siteConfig.name}
           </Link>
 
@@ -62,18 +69,25 @@ export function Header() {
                 {link.label}
               </NavLink>
             ))}
-            <ThemeToggle />
             <Button href={navigation.cta.href} size="default">
               {navigation.cta.label}
             </Button>
+            <div className="ml-2 pl-4 border-l border-[var(--color-dusk)]/20">
+              <ThemeToggle />
+            </div>
           </nav>
 
           {/* Mobile Actions */}
-          <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle />
+          <div className="flex items-center gap-3 md:hidden">
+            <Button href={navigation.cta.href} size="default" className="hidden sm:inline-flex">
+              {navigation.cta.label}
+            </Button>
+            <div className="pl-3 border-l border-[var(--color-dusk)]/20">
+              <ThemeToggle />
+            </div>
             <button
               type="button"
-              className="p-2 -mr-2 text-[var(--color-stone)]"
+              className="p-2 rounded-lg text-[var(--color-stone)] transition-base hover:bg-[var(--color-fog)]/40 dark:hover:bg-[var(--color-fog)]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)] active:scale-95"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -106,7 +120,7 @@ export function Header() {
         {/* Mobile Navigation */}
         <nav
           className={cn(
-            "md:hidden overflow-hidden transition-all duration-300 ease-out",
+            "md:hidden overflow-hidden transition-base",
             mobileMenuOpen ? "max-h-80 pb-8" : "max-h-0"
           )}
         >

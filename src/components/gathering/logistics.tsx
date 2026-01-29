@@ -1,4 +1,4 @@
-import { Heading, Text, Stack, Caption } from "@/components/ui";
+import { Heading, Text, Caption } from "@/components/ui";
 import { ScrollReveal } from "@/components/home/scroll-reveal";
 import { gatheringPage } from "@/content/copy";
 
@@ -14,11 +14,11 @@ export function Logistics() {
     { label: "Location", value: logistics.location },
     { label: "Venue", value: logistics.venue },
     { label: "Duration", value: logistics.duration },
-    { label: "Investment", value: logistics.price },
+    { label: "Price", value: logistics.price },
   ];
 
   return (
-    <Stack gap="lg">
+    <div className="flex flex-col gap-12">
       <ScrollReveal>
         <Heading level={2} size="subsection">
           {logistics.headline}
@@ -45,6 +45,6 @@ export function Logistics() {
           </Text>
         </ScrollReveal>
       )}
-    </Stack>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Heading, Text, Stack } from "@/components/ui";
+import { Heading, Text } from "@/components/ui";
 import { ScrollReveal } from "@/components/home/scroll-reveal";
 
 interface ManifestoProps {
@@ -13,7 +13,7 @@ interface ManifestoProps {
  */
 export function Manifesto({ headline, paragraphs }: ManifestoProps) {
   return (
-    <Stack gap="lg">
+    <div className="flex flex-col gap-12">
       <ScrollReveal>
         <Heading level={2} size="section">
           {headline}
@@ -29,6 +29,6 @@ export function Manifesto({ headline, paragraphs }: ManifestoProps) {
           </ScrollReveal>
         ))}
       </div>
-    </Stack>
+    </div>
   );
 }

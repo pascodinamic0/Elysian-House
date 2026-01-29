@@ -1,4 +1,4 @@
-import { Heading, Text, Stack } from "@/components/ui";
+import { Heading, Text } from "@/components/ui";
 import { ScrollReveal } from "@/components/home/scroll-reveal";
 
 interface DetailBlockProps {
@@ -15,7 +15,10 @@ interface DetailBlockProps {
  */
 export function DetailBlock({ headline, text, note }: DetailBlockProps) {
   return (
-    <Stack gap="md">
+    <div
+      className="p-8 md:p-10 rounded-2xl shadow-sm transition-base flex flex-col gap-6"
+      style={{ background: "var(--gradient-overlay)" }}
+    >
       <ScrollReveal>
         <Heading level={2} size="subsection">
           {headline}
@@ -33,7 +36,7 @@ export function DetailBlock({ headline, text, note }: DetailBlockProps) {
           </Text>
         </ScrollReveal>
       )}
-    </Stack>
+    </div>
   );
 }
 
@@ -52,16 +55,19 @@ export function DetailBlockWithItems({
   items,
 }: DetailBlockWithItemsProps) {
   return (
-    <Stack gap="lg">
+    <div className="flex flex-col gap-12">
       <ScrollReveal>
         <Heading level={2} size="subsection">
           {headline}
         </Heading>
       </ScrollReveal>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-6">
         {items.map((item, index) => (
           <ScrollReveal key={index} delay={0.1 + index * 0.05}>
-            <Stack gap="xs">
+            <div
+              className="p-6 rounded-xl shadow-sm transition-base hover:shadow-md flex flex-col gap-2"
+              style={{ background: "var(--gradient-overlay)" }}
+            >
               <Text
                 size="base"
                 as="span"
@@ -72,10 +78,10 @@ export function DetailBlockWithItems({
               <Text size="small" color="secondary">
                 {item.text}
               </Text>
-            </Stack>
+            </div>
           </ScrollReveal>
         ))}
       </div>
-    </Stack>
+    </div>
   );
 }

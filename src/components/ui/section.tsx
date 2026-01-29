@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 type SectionSpacing = "small" | "default" | "large";
-type SectionBackground = "primary" | "secondary";
+type SectionBackground = "primary" | "secondary" | "gradient" | "glass";
 
 interface SectionProps {
   /** Vertical spacing variant */
@@ -17,14 +17,16 @@ interface SectionProps {
 }
 
 const spacingClasses: Record<SectionSpacing, string> = {
-  small: "py-16 md:py-20",
-  default: "py-20 md:py-32",
-  large: "py-28 md:py-40",
+  small: "py-20 md:py-24",
+  default: "py-24 md:py-36",
+  large: "py-32 md:py-48",
 };
 
 const backgroundClasses: Record<SectionBackground, string> = {
   primary: "bg-[var(--color-linen)]",
   secondary: "bg-[var(--color-fog)]",
+  gradient: "bg-gradient-to-b from-[var(--color-linen)] via-[var(--color-fog)]/30 to-[var(--color-linen)]",
+  glass: "bg-[var(--glass-bg)] backdrop-blur-[var(--glass-blur)] border border-[var(--glass-border)]",
 };
 
 /**
@@ -41,13 +43,18 @@ export function Section({
   children,
   id,
 }: SectionProps) {
+  const hasRoundedCorners = background === "glass";
+  const hasShadow = background === "glass" || background === "gradient";
+
   return (
     <section
       id={id}
       className={cn(
         spacingClasses[spacing],
         backgroundClasses[background],
-        "transition-colors duration-300",
+        "transition-base",
+        hasRoundedCorners && "rounded-2xl",
+        hasShadow && "shadow-md",
         className
       )}
     >

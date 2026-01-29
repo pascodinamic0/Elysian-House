@@ -17,6 +17,7 @@
   --color-fog: #E8E4DF;
   --color-dusk: #8B7E74;
   --color-petal: #D4B5A0;
+  --color-mist: #B8A99E;
   
   /* Functional Colors */
   --color-ink: #1A1817;
@@ -37,10 +38,33 @@
   --space-3xl: 10rem;    /* 160px */
   
   /* Section Spacing */
-  --section-sm: 4rem;
-  --section-md: 6rem;
-  --section-lg: 8rem;
-  --section-xl: 10rem;
+  --section-sm: 5rem;
+  --section-md: 7rem;
+  --section-lg: 10rem;
+  --section-xl: 12rem;
+  
+  /* Border Radius Scale */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
+  /* Shadow System */
+  --shadow-xs: 0 1px 2px 0 rgba(44, 40, 37, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(44, 40, 37, 0.08), 0 1px 2px -1px rgba(44, 40, 37, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(44, 40, 37, 0.08), 0 2px 4px -2px rgba(44, 40, 37, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(44, 40, 37, 0.08), 0 4px 6px -4px rgba(44, 40, 37, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(44, 40, 37, 0.08), 0 8px 10px -6px rgba(44, 40, 37, 0.04);
+  
+  /* Glass Effect Tokens */
+  --glass-bg: rgba(247, 245, 242, 0.7);
+  --glass-border: rgba(44, 40, 37, 0.1);
+  --glass-blur: 12px;
+  
+  /* Gradient Tokens */
+  --gradient-hero: linear-gradient(135deg, rgba(247, 245, 242, 0.95) 0%, rgba(232, 228, 223, 0.85) 100%);
+  --gradient-section: linear-gradient(180deg, rgba(247, 245, 242, 0.4) 0%, rgba(232, 228, 223, 0.2) 100%);
+  --gradient-overlay: linear-gradient(135deg, rgba(196, 169, 140, 0.03) 0%, rgba(212, 181, 160, 0.02) 100%);
   
   /* Max Widths */
   --max-site: 75rem;     /* 1200px */
@@ -50,6 +74,7 @@
   /* Transitions */
   --duration-fast: 150ms;
   --duration-base: 200ms;
+  --duration-300: 300ms;
   --duration-slow: 400ms;
   --duration-reveal: 600ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -70,9 +95,23 @@
   --color-fog: #262320;          /* Darker section backgrounds */
   --color-dusk: #9A8E84;         /* Lighter muted for secondary text */
   --color-petal: #BFA58C;        /* Muted petal for hovers */
+  --color-mist: #7A6E65;
   
   /* Functional Colors */
-  --color-ink: #FAF8F6;          /* Near white for high contrast */
+  --color-ink: #FAF8F6;
+  
+  /* Dark Mode Shadows & Glass */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.25), 0 1px 2px -1px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -2px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -4px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  --glass-bg: rgba(28, 26, 24, 0.7);
+  --glass-border: rgba(245, 243, 240, 0.1);
+  --gradient-hero: linear-gradient(135deg, rgba(28, 26, 24, 0.95) 0%, rgba(38, 35, 32, 0.85) 100%);
+  --gradient-section: linear-gradient(180deg, rgba(28, 26, 24, 0.4) 0%, rgba(38, 35, 32, 0.2) 100%);
+  --gradient-overlay: linear-gradient(135deg, rgba(212, 181, 160, 0.05) 0%, rgba(196, 169, 140, 0.03) 100%);
+  
   --color-error: #C47070;        /* Lighter error for dark bg */
   --color-success: #8A9B8A;      /* Lighter success for dark bg */
 }
@@ -88,6 +127,7 @@
   --color-fog: var(--color-fog);
   --color-dusk: var(--color-dusk);
   --color-petal: var(--color-petal);
+  --color-mist: var(--color-mist);
   --color-ink: var(--color-ink);
   --color-error: var(--color-error);
   --color-success: var(--color-success);
@@ -133,6 +173,21 @@
   --transition-base: var(--duration-base) var(--ease-out);
   --transition-slow: var(--duration-slow) var(--ease-out);
   --transition-reveal: var(--duration-reveal) var(--ease-out);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --glass-bg: var(--glass-bg);
+  --glass-border: var(--glass-border);
+  --glass-blur: var(--glass-blur);
+  --gradient-hero: var(--gradient-hero);
+  --gradient-section: var(--gradient-section);
+  --gradient-overlay: var(--gradient-overlay);
 }
 
 /* --------------------------------------------
@@ -174,7 +229,7 @@ body {
   font-size: var(--text-body);
   line-height: var(--leading-body);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
 }
 
 /* --------------------------------------------
@@ -214,6 +269,7 @@ p:last-child {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.3s var(--ease-out), text-decoration-color 0.3s var(--ease-out);
 }
 
 /* --------------------------------------------
@@ -239,6 +295,17 @@ a {
 :focus-visible {
   outline: 2px solid var(--color-clay);
   outline-offset: 2px;
+  transition: outline-offset 0.2s var(--ease-out), outline-color 0.2s var(--ease-out);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-clay);
+  outline-offset: 2px;
+  transition: outline-offset 0.2s var(--ease-out), outline-color 0.2s var(--ease-out);
 }
 
 /* --------------------------------------------
@@ -281,18 +348,58 @@ a {
   text-wrap: balance;
 }
 
+/* Shared style utilities — use instead of repeating long Tailwind strings */
+.transition-base {
+  transition: all var(--duration-300) var(--ease-out);
+}
+
+.wordmark {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.link-focus-ring {
+  outline: none;
+}
+.link-focus-ring:focus-visible {
+  outline: 2px solid var(--color-clay);
+  outline-offset: 2px;
+}
+
+.link-focus-ring-rounded {
+  outline: none;
+}
+.link-focus-ring-rounded:focus-visible {
+  outline: 2px solid var(--color-clay);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
 /* --------------------------------------------
    Button Hover States
    -------------------------------------------- */
-/* Primary button hover - darken */
+/* Primary button hover */
 [data-variant="primary"]:hover:not(:disabled) {
-  background-color: var(--color-ink) !important;
+  background-color: var(--color-stone) !important;
+  transform: translateY(-1px);
 }
 
-/* Secondary button hover - fill */
+[data-variant="primary"]:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Secondary button hover */
 [data-variant="secondary"]:hover:not(:disabled) {
   background-color: var(--color-stone) !important;
   color: var(--color-linen) !important;
+  transform: translateY(-1px);
+}
+
+[data-variant="secondary"]:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 /* Ghost button hover */
@@ -337,12 +444,69 @@ a {
   }
 }
 
+@keyframes button-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(196, 169, 140, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(196, 169, 140, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(196, 169, 140, 0);
+  }
+}
+
+.animate-button-pulse {
+  animation: button-pulse 2s ease-out infinite;
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
-  .animate-fade-in {
+  .animate-fade-in,
+  .animate-button-pulse {
     animation: none;
     opacity: 1;
     transform: none;
+  }
+}
+
+/* --------------------------------------------
+   Mobile Form Visibility Fixes
+   Fix for corrupted CSS classes and mobile visibility issues
+   -------------------------------------------- */
+
+/* Ensure form wrapper doesn't have overflow issues on mobile */
+section form {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile-first form container fixes */
+@media (max-width: 768px) {
+  /* Prevent horizontal overflow */
+  .max-w-xl {
+    max-width: calc(100vw - 3rem);
+  }
+  
+  /* Ensure glass effect containers are visible on mobile */
+  .glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    overflow-wrap: break-word;
+  }
+  
+  /* Fix for potential viewport issues */
+  .mobile-safe-area {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Ensure transitions work correctly */
+  .transition-base-mobile {
+    transition: all var(--duration-base) var(--ease-out);
   }
 }

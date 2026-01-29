@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 type TextSize = "large" | "base" | "small";
-type TextColor = "primary" | "secondary";
+type TextColor = "primary" | "secondary" | "tertiary";
 type TextAs = "p" | "span" | "div";
 
 interface TextProps {
@@ -20,14 +20,15 @@ interface TextProps {
 }
 
 const sizeClasses: Record<TextSize, string> = {
-  large: "text-[1.375rem] leading-[1.65] md:text-[1.5rem]",
-  base: "text-[1.125rem] leading-[1.7]",
+  large: "text-[1.375rem] leading-[1.7] md:text-[1.5rem] md:leading-[1.75]",
+  base: "text-[1.125rem] leading-[1.75]",
   small: "text-[1rem] leading-[1.7]",
 };
 
 const colorClasses: Record<TextColor, string> = {
   primary: "text-[var(--color-stone)]",
   secondary: "text-[var(--color-dusk)]",
+  tertiary: "text-[var(--color-mist)]",
 };
 
 /**

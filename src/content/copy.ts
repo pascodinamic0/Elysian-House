@@ -11,7 +11,7 @@ export const siteConfig = {
   description:
     "Elysian House is a curated experiential brand creating gatherings for women at the moment between who they've been and who they're becoming.",
   url: "https://elysianhouse.com", // Update when domain is confirmed
-  instagram: "https://instagram.com/elysianhouse", // Update with actual handle
+  instagram: "https://instagram.com/elysianzita",
 };
 
 export const eventConfig = {

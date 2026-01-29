@@ -34,10 +34,13 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
       type="button"
       onClick={toggleTheme}
       className={cn(
-        "relative p-2 -m-2",
-        "text-dusk hover:text-stone dark:text-dusk dark:hover:text-linen",
-        "transition-colors duration-200",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2",
+        "relative p-2 rounded-lg",
+        "text-[var(--color-dusk)] hover:text-[var(--color-stone)]",
+        "dark:text-[var(--color-dusk)] dark:hover:text-[var(--color-linen)]",
+        "hover:bg-[var(--color-fog)]/40 dark:hover:bg-[var(--color-fog)]/30",
+        "transition-base",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)]",
+        "active:scale-95",
         className
       )}
       aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}

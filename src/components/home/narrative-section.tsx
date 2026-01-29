@@ -9,7 +9,7 @@ export function NarrativeSection() {
   const { narrative } = homePage;
 
   return (
-    <section className="py-20 md:py-32">
+    <section id="after-hero" className="py-20 md:py-32">
       <Container width="narrow" className="text-center">
         {/* Beat 1: The Naming */}
         <ScrollReveal>

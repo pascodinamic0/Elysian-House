@@ -1,10 +1,13 @@
 import { cn } from "@/lib/utils";
 
 type ContainerWidth = "full" | "content" | "narrow";
+type ContainerVariant = "default" | "glass";
 
 interface ContainerProps {
   /** Width variant */
   width?: ContainerWidth;
+  /** Visual variant */
+  variant?: ContainerVariant;
   /** Additional classes */
   className?: string;
   /** Content */
@@ -26,8 +29,14 @@ const widthClasses: Record<ContainerWidth, string> = {
  * <Container>Full-width content</Container>
  * <Container width="narrow">Text-optimized content</Container>
  */
+const variantClasses: Record<ContainerVariant, string> = {
+  default: "",
+  glass: "bg-[var(--glass-bg)] backdrop-blur-[var(--glass-blur)] border border-[var(--glass-border)] rounded-2xl shadow-md p-8 md:p-12",
+};
+
 export function Container({
   width = "full",
+  variant = "default",
   className,
   children,
   as: Tag = "div",
@@ -35,8 +44,11 @@ export function Container({
   return (
     <Tag
       className={cn(
-        "mx-auto w-full px-6 md:px-12",
+        "mx-auto w-full",
+        variant === "default" ? "px-6 md:px-12" : "",
         widthClasses[width],
+        variantClasses[variant],
+        "transition-base",
         className
       )}
     >

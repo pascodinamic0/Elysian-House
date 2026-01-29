@@ -6,9 +6,9 @@ export default function NotFound() {
     <>
       <Header />
       <main id="main-content" className="pt-20 md:pt-24">
-        <Section spacing="large" className="min-h-[60vh] flex items-center">
+        <Section spacing="large" background="gradient" className="min-h-[60vh] flex items-center">
           <Container width="narrow" className="text-center">
-            <Stack gap="lg" align="center">
+            <Stack gap="xl" align="center">
               <Text size="small" color="secondary" className="uppercase tracking-[0.15em]">
                 Page not found
               </Text>
