@@ -13,6 +13,7 @@ import {
   DetailBlockWithItems,
   Logistics,
 } from "@/components/gathering";
+import { ImageHeroBackground } from "@/components/gathering/video-hero-background";
 import { gatheringPage, homePage } from "@/content/copy";
 
 export const metadata: Metadata = {
@@ -30,21 +31,25 @@ export default function GatheringPage() {
     <>
       <Header />
       <main id="main-content" className="pt-20 md:pt-24">
-        {/* Hero */}
-        <Section spacing="large">
-          <div className="mx-auto w-full px-6 md:px-12 max-w-[45rem] text-center flex flex-col gap-6 items-center">
+        {/* Hero with Image Background */}
+        <section className="relative py-32 md:py-48 bg-[var(--color-linen)] transition-base overflow-hidden min-h-[70vh] md:min-h-[80vh] flex items-end">
+          {/* Image Background */}
+          <ImageHeroBackground />
+          
+          {/* Content - Positioned lower to avoid image subjects */}
+          <div className="relative z-10 mx-auto w-full px-6 md:px-12 max-w-[45rem] text-center flex flex-col gap-6 items-center pb-20 md:pb-32 pt-32 md:pt-0">
             <ScrollReveal>
-              <Caption className="uppercase tracking-[0.15em]">
+              <Caption className="uppercase tracking-[0.15em] text-[var(--color-stone)] drop-shadow-lg [text-shadow:0_2px_8px_rgba(0,0,0,0.15)]">
                 {hero.subtitle}
               </Caption>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <Heading level={1} size="display">
+              <Heading level={1} size="display" className="text-[var(--color-stone)] drop-shadow-lg [text-shadow:0_2px_12px_rgba(0,0,0,0.2)]">
                 {hero.headline}
               </Heading>
             </ScrollReveal>
           </div>
-        </Section>
+        </section>
 
         {/* What It Is */}
         <Section background="secondary">

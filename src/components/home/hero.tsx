@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, type ReactElement } from "react";
+import { useState, useEffect, useRef, type ReactElement } from "react";
 import { motion } from "framer-motion";
 import { Container, Heading } from "@/components/ui";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 
 const staticPrefix: string = "A quiet room for women who are ready to";
 const rotatingWords: readonly string[] = ["start..", "scale..", "conquer.."];
@@ -17,118 +17,13 @@ const pauseAfterWord: number = 1500; // ms before typing next word
  * When in view: scroll locked until user clicks arrow or scrolls past; overlay "Click to scroll down".
  */
 export function Hero(): ReactElement {
-  const prefersReducedMotion: boolean = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+  const { isLocked, scrollToNext, prefersReducedMotion } = useScrollLock(heroRef, {
+    targetId: "after-hero",
+  });
+  
   const [wordIndex, setWordIndex] = useState<number>(0);
   const [visibleLength, setVisibleLength] = useState<number>(0);
-  const heroRef = useRef<HTMLElement>(null);
-  const [isLocked, setIsLocked] = useState<boolean>(false);
-  const isScrollingRef = useRef<boolean>(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const lastScrollYRef = useRef<number>(0);
-
-  const scrollToNext = useCallback(() => {
-    document.getElementById("after-hero")?.scrollIntoView({ behavior: "smooth" });
-  }, []);
-
-  // Lock scroll when hero is in view (unless reduced motion)
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-
-    let lastScrollY = window.scrollY;
-
-    const checkLock = () => {
-      const hero = heroRef.current;
-      if (!hero) return;
-      
-      const currentScrollY = window.scrollY;
-      const scrollDirection = currentScrollY < lastScrollY ? "up" : "down";
-      lastScrollY = currentScrollY;
-      
-      const rect = hero.getBoundingClientRect();
-      const heroBottom = rect.bottom;
-      // Consider "in hero" when hero still occupies most of the viewport (e.g. bottom above fold)
-      const inHero = heroBottom > window.innerHeight * 0.5;
-      
-      // Clear any pending lock check
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = null;
-      }
-      
-      // If scrolling up and entering hero, delay lock to allow smooth scroll to complete
-      if (scrollDirection === "up" && inHero) {
-        // Immediately unlock to allow smooth scrolling
-        setIsLocked(false);
-        isScrollingRef.current = true;
-        scrollTimeoutRef.current = setTimeout(() => {
-          // Re-check if still in hero after delay
-          const stillInHero = heroRef.current && 
-            heroRef.current.getBoundingClientRect().bottom > window.innerHeight * 0.5;
-          if (stillInHero) {
-            setIsLocked(true);
-          }
-          isScrollingRef.current = false;
-          scrollTimeoutRef.current = null;
-        }, 600); // Delay to allow smooth scroll to complete
-      } else if (scrollDirection === "down" || !inHero) {
-        // Immediately unlock when scrolling down or leaving hero
-        isScrollingRef.current = false;
-        setIsLocked(false);
-      } else if (inHero && !isScrollingRef.current) {
-        // If already in hero and not scrolling, lock immediately
-        setIsLocked(true);
-      }
-    };
-
-    // Throttle scroll events for better performance
-    let ticking = false;
-    const throttledCheckLock = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          checkLock();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    checkLock();
-    window.addEventListener("scroll", throttledCheckLock, { passive: true });
-    window.addEventListener("resize", checkLock);
-    
-    return () => {
-      window.removeEventListener("scroll", throttledCheckLock);
-      window.removeEventListener("resize", checkLock);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = null;
-      }
-    };
-  }, [prefersReducedMotion]);
-
-  // When locked: prevent wheel/touch scroll on document
-  useEffect(() => {
-    if (prefersReducedMotion || !isLocked) {
-      document.body.style.overflow = "";
-      return;
-    }
-    document.body.style.overflow = "hidden";
-
-    const preventScroll = (e: WheelEvent | TouchEvent) => {
-      // Allow scroll if we're in the middle of a smooth scroll operation
-      if (isScrollingRef.current) {
-        return;
-      }
-      e.preventDefault();
-    };
-    window.addEventListener("wheel", preventScroll, { passive: false });
-    window.addEventListener("touchmove", preventScroll, { passive: false });
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("wheel", preventScroll);
-      window.removeEventListener("touchmove", preventScroll);
-    };
-  }, [prefersReducedMotion, isLocked]);
 
   const currentWord: string = rotatingWords[wordIndex];
   const isTypingComplete: boolean = visibleLength >= currentWord.length;
@@ -155,11 +50,19 @@ export function Hero(): ReactElement {
   }, [prefersReducedMotion, currentWord, visibleLength]);
 
   return (
-    <section ref={heroRef} className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section ref={heroRef} className="relative min-h-[90vh] flex items-center justify-start overflow-hidden">
       {/* Subtle background gradient */}
       <div
         className="absolute inset-0"
         style={{ background: "var(--gradient-hero)" }}
+        aria-hidden="true"
+      />
+      {/* Background image overlay */}
+      <div 
+        className="hero-background-image absolute inset-0 opacity-[0.45] dark:opacity-[0.5]"
+        style={{
+          backgroundImage: "url('/images/Black and white .jpg')",
+        }}
         aria-hidden="true"
       />
       {/* Subtle texture overlay */}
@@ -194,7 +97,7 @@ export function Hero(): ReactElement {
         />
       )}
       
-      <Container className="relative z-10 text-center">
+      <Container className="relative z-10 text-left">
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -218,7 +121,7 @@ export function Hero(): ReactElement {
             <Heading
               level={1}
               size="display"
-              className="max-w-[18ch] mx-auto"
+              className="max-w-[18ch]"
             >
               <span>{staticPrefix} </span>
               <span className="inline-block min-w-[9ch] text-left">

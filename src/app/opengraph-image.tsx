@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 // Image metadata
-export const alt = "Elysian House — A quiet room for women who are ready to begin again.";
+export const alt = "Elysian House, A quiet room for women who are ready to begin again.";
 export const size = {
   width: 1200,
   height: 630,

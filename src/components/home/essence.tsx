@@ -54,7 +54,7 @@ export function Essence() {
   // Reduced motion version - show all items immediately
   if (prefersReducedMotion) {
     return (
-      <section className="py-32 md:py-48 bg-[var(--color-linen)] transition-base">
+      <section id="after-event-intro" className="py-32 md:py-48 bg-[var(--color-linen)] transition-base">
         <Container width="narrow" className="text-center flex flex-col items-center gap-20">
           <div>
             <Heading level={2} size="section">
@@ -80,7 +80,7 @@ export function Essence() {
   }
 
   return (
-    <section className="relative bg-[var(--color-linen)] transition-base">
+    <section id="after-event-intro" className="relative bg-[var(--color-linen)] transition-base">
       {/* Tall scrollable container - creates the scroll distance */}
       <div 
         ref={containerRef}

@@ -26,7 +26,7 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-const staticPrefix: string = "A quiet room for women who are ready to";
+const staticPrefix: string = "Are you a woman, living in Dubai and ready to";
 const rotatingWords: readonly string[] = ["start..", "scale..", "conquer.."];
 
 /**

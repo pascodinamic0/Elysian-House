@@ -39,7 +39,7 @@ export default function PrivacyPage() {
                   </Heading>
                   <Text size="base">
                     Your information is used solely to communicate with you about gatherings 
-                    you've registered for, and—if you've opted in—to share updates about 
+                    you've registered for, and if you've opted in, to share updates about 
                     future Elysian House events. We do not sell, rent, or share your 
                     personal information with third parties for marketing purposes.
                   </Text>

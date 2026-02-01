@@ -469,6 +469,11 @@ select:focus-visible {
     opacity: 1;
     transform: none;
   }
+  
+  /* Disable autoplay videos for users who prefer reduced motion */
+  video[autoplay] {
+    display: none;
+  }
 }
 
 /* --------------------------------------------
@@ -508,5 +513,31 @@ section form {
   /* Ensure transitions work correctly */
   .transition-base-mobile {
     transition: all var(--duration-base) var(--ease-out);
+  }
+}
+
+/* --------------------------------------------
+   Hero Background Image Positioning
+   Ensures head is visible on desktop while maintaining mobile visibility
+   -------------------------------------------- */
+.hero-background-image {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+/* On larger screens, ensure the image shows from the top */
+@media (min-width: 768px) {
+  .hero-background-image {
+    background-position: top center;
+    /* Ensure head area is visible - may need to adjust if image is very tall */
+    background-size: cover;
+  }
+}
+
+/* On very wide screens, maintain top positioning */
+@media (min-width: 1200px) {
+  .hero-background-image {
+    background-position: top center;
   }
 }

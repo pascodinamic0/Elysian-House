@@ -33,7 +33,7 @@ export const homePage = {
   narrative: {
     beat1: {
       // The Naming
-      text: "There's a season when everything works, but nothing fits anymore. When you're grateful and still hungry. When you're fine — and quietly disappearing.",
+      text: "There's a season when everything works, but nothing fits anymore. When you're grateful and still hungry. When you're fine, and quietly disappearing.",
     },
     beat2: {
       // The Permission
@@ -46,10 +46,10 @@ export const homePage = {
   },
   
   eventIntro: {
-    headline: "Transform & Thrive",
+    headline: "Elysian House Event",
     subtitle: "A Gathering for Women Ready to Bloom",
     description:
-      "Not a seminar. Not a performance. A room. A gathering for women who are tired of carrying everything alone — and ready to be witnessed, held, and reminded of who they're becoming.",
+      "Not a seminar. Not a performance. A room. A gathering for women who are tired of carrying everything alone, and ready to be witnessed, held, and reminded of who they're becoming.",
     date: "February 28, 2026 · Dubai",
   },
   
@@ -57,8 +57,8 @@ export const homePage = {
     headline: "What happens",
     items: [
       "We gather in a room designed for presence.",
-      "We reflect — guided, not lectured.",
-      "We witness each other — seen, not fixed.",
+      "We reflect, guided, not lectured.",
+      "We witness each other, seen, not fixed.",
       "We leave different than we came.",
     ],
   },
@@ -82,7 +82,7 @@ export const gatheringPage = {
   
   whatItIs: {
     headline: "What this is",
-    text: "Transform & Thrive is a curated, facilitated gathering — not a seminar, not a networking event, not a sales pitch. It's a room for women who are ready to step out of quiet survival and into intentional becoming. We come together to reflect, to witness, and to remember that we don't have to carry everything alone.",
+    text: "Transform & Thrive is a curated, facilitated gathering, not a seminar, not a networking event, not a sales pitch. It's a room for women who are ready to step out of quiet survival and into intentional becoming. We come together to reflect, to witness, and to remember that we don't have to carry everything alone.",
   },
   
   whatHappens: {
@@ -94,7 +94,7 @@ export const gatheringPage = {
       },
       {
         title: "Guided reflection",
-        text: "Facilitated prompts that invite you inward — not answers, but questions worth sitting with.",
+        text: "Facilitated prompts that invite you inward, not answers, but questions worth sitting with.",
       },
       {
         title: "Witnessed conversation",
@@ -102,14 +102,14 @@ export const gatheringPage = {
       },
       {
         title: "Collective intention",
-        text: "We close with something shared — a word, a breath, a quiet commitment to ourselves.",
+        text: "We close with something shared, a word, a breath, a quiet commitment to ourselves.",
       },
     ],
   },
   
   whoItsFor: {
     headline: "Who this is for",
-    text: "This gathering is for women who feel the pull toward something more — even if they can't name it yet. Women whose lives look fine but feel different. Women who have been the strong one, the capable one, the one who holds it together. Women who are ready to be held, too.",
+    text: "This gathering is for women who feel the pull toward something more, even if they can't name it yet. Women whose lives look fine but feel different. Women who have been the strong one, the capable one, the one who holds it together. Women who are ready to be held, too.",
     notFor:
       "This is not for everyone. If you're looking for a quick fix, a motivational speech, or a room full of strangers exchanging business cards, this isn't it. This is slow. This is real. This is for women who are ready to show up.",
   },
@@ -134,22 +134,22 @@ export const aboutPage = {
   philosophy: {
     headline: "What Elysian House is",
     paragraphs: [
-      "Elysian House is not a brand in the traditional sense. It's a container — a symbolic house that women return to when they're ready to meet themselves again.",
+      "Elysian House is not a brand in the traditional sense. It's a container, a symbolic house that women return to when they're ready to meet themselves again.",
       "We exist for the moment between who you've been and who you're becoming. That tender, uncertain season when life still looks fine on the outside, but something inside is asking for more truth.",
-      "This is not coaching. Not wellness. Not another self-help promise. It's a space. A gathering. A room where you don't have to explain yourself — because the other women in it understand without words.",
+      "This is not coaching. Not wellness. Not another self-help promise. It's a space. A gathering. A room where you don't have to explain yourself, because the other women in it understand without words.",
     ],
   },
   
   host: {
     headline: "The Host",
     name: "[Host name]", // To be filled in
-    bio: "The woman behind Elysian House is not a guru. She's a convener — someone who builds rooms and invites others in. Her role is to hold the space, not to fill it. She's walking this path too; she just decided to build the room along the way.",
+    bio: "The woman behind Elysian House is not a guru. She's a convener, someone who builds rooms and invites others in. Her role is to hold the space, not to fill it. She's walking this path too; she just decided to build the room along the way.",
     // Photo to be added later
   },
   
   vision: {
     headline: "What's coming",
-    text: "This gathering is the first room of Elysian House. But it won't be the last. We envision quarterly gatherings, intimate dinners, longer retreats, and eventually, a community of women who return to each other — season after season.",
+    text: "This gathering is the first room of Elysian House. But it won't be the last. We envision quarterly gatherings, intimate dinners, longer retreats, and eventually, a community of women who return to each other, season after season.",
   },
 };
 
@@ -184,7 +184,7 @@ export const registerPage = {
   confirmation: {
     headline: "We've received your request",
     message:
-      "Thank you for reaching out. We review each request personally — you'll hear from us soon.",
+      "Thank you for reaching out. We review each request personally, you'll hear from us soon.",
     nextSteps:
       "In the meantime, feel free to follow along on Instagram for reflections and updates.",
   },

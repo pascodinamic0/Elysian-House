@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { fontVariables } from "@/lib/fonts";
 import { metadata as siteMetadata, siteConfig } from "@/content/copy";
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Elysian House — A quiet room for women who are ready to begin again.",
+        alt: "Elysian House, A quiet room for women who are ready to begin again.",
       },
     ],
   },
@@ -47,8 +48,10 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        {/* Prevent flash of wrong theme */}
-        <script
+        {/* Prevent flash of wrong theme - using Script component to avoid hydration mismatch */}
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {

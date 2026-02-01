@@ -15,25 +15,33 @@ interface DetailBlockProps {
  */
 export function DetailBlock({ headline, text, note }: DetailBlockProps) {
   return (
-    <div
-      className="p-8 md:p-10 rounded-2xl shadow-sm transition-base flex flex-col gap-6"
-      style={{ background: "var(--gradient-overlay)" }}
-    >
+    <div className="flex flex-col gap-6 md:gap-8">
+      {/* Heading Card */}
       <ScrollReveal>
-        <Heading level={2} size="subsection">
-          {headline}
-        </Heading>
+        <div className="p-6 md:p-8 bg-[var(--color-linen)] border border-[var(--color-clay)]/15 rounded-xl shadow-sm">
+          <Heading level={2} size="subsection" className="text-[var(--color-stone)] tracking-tight">
+            {headline}
+          </Heading>
+        </div>
       </ScrollReveal>
+      
+      {/* Main Content Card */}
       <ScrollReveal delay={0.1}>
-        <Text size="base" className="text-balance">
-          {text}
-        </Text>
+        <div className="p-8 md:p-10 bg-[var(--color-linen)] border border-[var(--color-clay)]/15 rounded-xl shadow-sm transition-all duration-300 hover:shadow-md hover:border-[var(--color-clay)]/25">
+          <Text size="base" className="text-balance leading-[1.75] max-w-[65ch]">
+            {text}
+          </Text>
+        </div>
       </ScrollReveal>
+      
+      {/* Note Card */}
       {note && (
         <ScrollReveal delay={0.15}>
-          <Text size="small" color="secondary" className="text-balance italic">
-            {note}
-          </Text>
+          <div className="p-8 md:p-10 bg-[var(--color-fog)]/40 border border-[var(--color-clay)]/15 rounded-xl shadow-sm transition-all duration-300 hover:shadow-md hover:border-[var(--color-clay)]/25">
+            <Text size="small" color="secondary" className="text-balance italic leading-[1.7] max-w-[60ch]">
+              {note}
+            </Text>
+          </div>
         </ScrollReveal>
       )}
     </div>
