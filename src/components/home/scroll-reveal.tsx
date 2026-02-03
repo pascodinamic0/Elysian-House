@@ -32,13 +32,11 @@ export function ScrollReveal({
   duration = 0.6,
   y = 24,
 }: ScrollRevealProps) {
-  // #region agent log
-  fetch('http://127.0.0.1:7243/ingest/660c50a2-335d-4d85-98ac-6f635e5fd7bf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scroll-reveal.tsx:35',message:'ScrollReveal render start',data:{delay,duration,y,hasChildren:!!children},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-  // #endregion
   const prefersReducedMotion = useReducedMotion();
 
-  // If user prefers reduced motion, render without animation
-  if (prefersReducedMotion) {
+  // During SSR/hydration (null) or if user prefers reduced motion, render without animation
+  // This prevents the "invisible content" flash during hydration
+  if (prefersReducedMotion === null || prefersReducedMotion) {
     return <div className={className}>{children}</div>;
   }
 
@@ -73,7 +71,8 @@ export function ScrollRevealGroup({
 }) {
   const prefersReducedMotion = useReducedMotion();
 
-  if (prefersReducedMotion) {
+  // During SSR/hydration (null) or if user prefers reduced motion, render without animation
+  if (prefersReducedMotion === null || prefersReducedMotion) {
     return <div className={className}>{children}</div>;
   }
 
