@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils";
@@ -33,21 +34,23 @@ export function ScrollReveal({
   y = 24,
 }: ScrollRevealProps) {
   const prefersReducedMotion = useReducedMotion();
+  const [hasMounted, setHasMounted] = useState(false);
 
-  // During SSR/hydration (null) or if user prefers reduced motion, render without animation
-  // This prevents the "invisible content" flash during hydration
-  if (prefersReducedMotion === null || prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  // Skip animation if: not mounted yet, reduced motion preferred, or preference unknown
+  const shouldAnimate = hasMounted && prefersReducedMotion === false;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
+      initial={shouldAnimate ? { opacity: 0, y } : { opacity: 1, y: 0 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{
-        duration,
-        delay,
+        duration: shouldAnimate ? duration : 0,
+        delay: shouldAnimate ? delay : 0,
         ease: [0.16, 1, 0.3, 1], // Custom ease-out
       }}
       className={cn(className)}
@@ -70,21 +73,24 @@ export function ScrollRevealGroup({
   staggerDelay?: number;
 }) {
   const prefersReducedMotion = useReducedMotion();
+  const [hasMounted, setHasMounted] = useState(false);
 
-  // During SSR/hydration (null) or if user prefers reduced motion, render without animation
-  if (prefersReducedMotion === null || prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  const shouldAnimate = hasMounted && prefersReducedMotion === false;
 
   return (
     <motion.div
-      initial="hidden"
+      initial={shouldAnimate ? "hidden" : "visible"}
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       variants={{
+        hidden: {},
         visible: {
           transition: {
-            staggerChildren: staggerDelay,
+            staggerChildren: shouldAnimate ? staggerDelay : 0,
           },
         },
       }}
