@@ -141,12 +141,12 @@ export function Hero(): ReactElement {
       </Container>
 
       {/* Scroll indicator + overlay when locked */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+      <div className="absolute bottom-6 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 sm:gap-3">
         {!prefersReducedMotion && isLocked && (
           <motion.span
-            className="text-[var(--color-dusk)] text-sm font-sans tracking-wide"
+            className="text-[var(--color-stone)] text-xs sm:text-sm font-sans tracking-wide opacity-80"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 0.8 }}
             transition={{ duration: 0.3 }}
           >
             Click to scroll down
@@ -155,9 +155,9 @@ export function Hero(): ReactElement {
         <motion.button
           type="button"
           onClick={scrollToNext}
-          className="p-3 rounded-full transition-base hover:bg-[var(--color-fog)]/50 dark:hover:bg-[var(--color-fog)]/30 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)]"
+          className="p-2 sm:p-3 rounded-full transition-base hover:bg-[var(--color-fog)]/50 dark:hover:bg-[var(--color-fog)]/30 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)]"
           initial={prefersReducedMotion ? {} : { opacity: 0 }}
-          animate={{ opacity: 0.6 }}
+          animate={{ opacity: 0.85 }}
           transition={{ duration: 0.8, delay: 1.5 }}
           aria-label="Scroll to next section"
         >
@@ -170,11 +170,11 @@ export function Hero(): ReactElement {
             }}
           >
             <svg
-              className="w-8 h-8 text-[var(--color-dusk)]"
+              className="w-6 h-6 sm:w-8 sm:h-8 text-[var(--color-stone)]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              strokeWidth={1.5}
+              strokeWidth={2}
               aria-hidden="true"
             >
               <path
