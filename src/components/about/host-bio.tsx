@@ -16,9 +16,9 @@ interface HostBioProps {
  */
 export function HostBio({ headline, name, bio }: HostBioProps) {
   return (
-    <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+    <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start">
       {/* Portrait */}
-      <ScrollReveal className="shrink-0">
+      <ScrollReveal className="shrink-0 flex justify-center md:justify-start w-full md:w-auto">
         <div className="w-48 h-60 md:w-56 md:h-72 relative overflow-hidden">
           <Image
             src="/images/The Host.jpg"
