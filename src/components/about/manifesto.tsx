@@ -13,7 +13,7 @@ interface ManifestoProps {
  */
 export function Manifesto({ headline, paragraphs }: ManifestoProps) {
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-12 text-center md:text-left">
       <ScrollReveal>
         <Heading level={2} size="section">
           {headline}

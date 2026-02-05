@@ -58,7 +58,7 @@ export default function AboutPage() {
         {/* Vision */}
         <Section background="secondary">
           <Container width="narrow">
-            <Stack gap="md">
+            <Stack gap="md" className="items-center md:items-start text-center md:text-left">
               <ScrollReveal>
                 <Heading level={2} size="subsection">
                   {vision.headline}

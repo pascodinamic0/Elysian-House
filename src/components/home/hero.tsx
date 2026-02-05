@@ -59,9 +59,10 @@ export function Hero(): ReactElement {
       />
       {/* Background image overlay */}
       <div 
-        className="hero-background-image absolute inset-0 opacity-[0.45] dark:opacity-[0.5]"
+        className="hero-background-image absolute inset-0 opacity-[0.35] dark:opacity-[0.4]"
         style={{
           backgroundImage: "url('/images/Black and white .jpg')",
+          backgroundPosition: "center 20%",
         }}
         aria-hidden="true"
       />
@@ -121,7 +122,7 @@ export function Hero(): ReactElement {
             <Heading
               level={1}
               size="display"
-              className="max-w-[18ch]"
+              className="max-w-[18ch] drop-shadow-sm font-medium"
             >
               <span>{staticPrefix} </span>
               <span className="inline-block min-w-[9ch] text-left">

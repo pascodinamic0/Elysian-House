@@ -19,19 +19,19 @@ export function HostBio({ headline, name, bio }: HostBioProps) {
     <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start">
       {/* Portrait */}
       <ScrollReveal className="shrink-0 flex justify-center md:justify-start w-full md:w-auto">
-        <div className="w-48 h-60 md:w-56 md:h-72 relative overflow-hidden">
+        <div className="w-56 h-72 md:w-72 md:h-96 relative overflow-hidden">
           <Image
             src="/images/The Host.jpg"
             alt={`Portrait of ${name}`}
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 192px, 224px"
+            sizes="(max-width: 768px) 224px, 288px"
           />
         </div>
       </ScrollReveal>
 
       {/* Content */}
-      <Stack gap="md" className="flex-1">
+      <Stack gap="md" className="flex-1 items-center md:items-start text-center md:text-left">
         <ScrollReveal delay={0.1}>
           <Heading level={3} size="subsection">
             {headline}
