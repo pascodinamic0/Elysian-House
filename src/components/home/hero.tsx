@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef, type ReactElement } from "react";
+import { useState, useEffect, type ReactElement } from "react";
 import { motion } from "framer-motion";
 import { Container, Heading } from "@/components/ui";
-import { useScrollLock } from "@/hooks/use-scroll-lock";
 
 const staticPrefix: string = "A quiet room for women who are ready to";
 const rotatingWords: readonly string[] = ["start..", "scale..", "conquer.."];
@@ -14,13 +13,11 @@ const pauseAfterWord: number = 1500; // ms before typing next word
  * Hero — Opening section with primary statement
  * Features subtle floating animation and breathing rhythm
  * Ending words type letter by letter: start.. → scale.. → conquer.. (loop)
- * When in view: scroll locked until user clicks arrow or scrolls past; overlay "Click to scroll down".
  */
 export function Hero(): ReactElement {
-  const heroRef = useRef<HTMLElement>(null);
-  const { isLocked, scrollToNext, prefersReducedMotion } = useScrollLock(heroRef, {
-    targetId: "after-hero",
-  });
+  const prefersReducedMotion = typeof window !== "undefined" 
+    ? window.matchMedia("(prefers-reduced-motion: reduce)").matches 
+    : false;
   
   const [wordIndex, setWordIndex] = useState<number>(0);
   const [visibleLength, setVisibleLength] = useState<number>(0);
@@ -50,7 +47,7 @@ export function Hero(): ReactElement {
   }, [prefersReducedMotion, currentWord, visibleLength]);
 
   return (
-    <section ref={heroRef} className="relative min-h-[90vh] flex items-center justify-start overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-start overflow-hidden">
       {/* Subtle background gradient */}
       <div
         className="absolute inset-0"
@@ -141,26 +138,14 @@ export function Hero(): ReactElement {
         </motion.div>
       </Container>
 
-      {/* Scroll indicator + overlay when locked */}
+      {/* Scroll indicator */}
       <div className="absolute bottom-6 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 sm:gap-3">
-        {!prefersReducedMotion && isLocked && (
-          <motion.span
-            className="text-[var(--color-stone)] text-xs sm:text-sm font-sans tracking-wide opacity-80"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.8 }}
-            transition={{ duration: 0.3 }}
-          >
-            Click to scroll down
-          </motion.span>
-        )}
-        <motion.button
-          type="button"
-          onClick={scrollToNext}
-          className="p-2 sm:p-3 rounded-full transition-base hover:bg-[var(--color-fog)]/50 dark:hover:bg-[var(--color-fog)]/30 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)]"
+        <motion.div
+          className="p-2 sm:p-3"
           initial={prefersReducedMotion ? {} : { opacity: 0 }}
           animate={{ opacity: 0.85 }}
           transition={{ duration: 0.8, delay: 1.5 }}
-          aria-label="Scroll to next section"
+          aria-hidden="true"
         >
           <motion.div
             animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
@@ -185,7 +170,7 @@ export function Hero(): ReactElement {
               />
             </svg>
           </motion.div>
-        </motion.button>
+        </motion.div>
       </div>
     </section>
   );
