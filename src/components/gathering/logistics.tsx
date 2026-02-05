@@ -13,6 +13,7 @@ export function Logistics() {
     { label: "Time", value: logistics.time },
     { label: "Location", value: logistics.location },
     { label: "Venue", value: logistics.venue },
+    { label: "Parking", value: logistics.parking },
     { label: "Duration", value: logistics.duration },
     { label: "Price", value: logistics.price },
   ];
