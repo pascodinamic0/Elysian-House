@@ -81,7 +81,7 @@ export function Hero(): ReactElement {
           style={{
             background: "radial-gradient(circle, var(--color-clay) 0%, transparent 70%)",
             filter: "blur(80px)",
-            boxShadow: "0 0 100px rgba(196, 169, 140, 0.1)",
+            boxShadow: "0 0 100px rgba(232, 74, 95, 0.1)",
           }}
           animate={{
             x: [0, 30, 0],

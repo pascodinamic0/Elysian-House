@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { fontVariables } from "@/lib/fonts";
 import { metadata as siteMetadata, siteConfig } from "@/content/copy";
@@ -48,10 +47,9 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        {/* Prevent flash of wrong theme - using Script component to avoid hydration mismatch */}
-        <Script
+        {/* Prevent flash of wrong theme */}
+        <script
           id="theme-script"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {

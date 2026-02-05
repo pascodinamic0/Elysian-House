@@ -36,7 +36,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
       className={cn(
         "relative p-2 rounded-lg",
         "text-[var(--color-dusk)] hover:text-[var(--color-stone)]",
-        "dark:text-[var(--color-dusk)] dark:hover:text-[var(--color-linen)]",
+        "dark:text-[var(--color-stone)]/70 dark:hover:text-[var(--color-stone)]",
         "hover:bg-[var(--color-fog)]/40 dark:hover:bg-[var(--color-fog)]/30",
         "transition-base",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-linen)]",

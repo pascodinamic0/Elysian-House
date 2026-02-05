@@ -20,7 +20,7 @@ export default async function OGImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#F7F5F2",
+          backgroundColor: "#FFFFFF",
           padding: "80px",
         }}
       >
@@ -29,7 +29,7 @@ export default async function OGImage() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundColor: "#E8E4DF",
+            backgroundColor: "#FDF2F4",
             opacity: 0.3,
           }}
         />
@@ -51,7 +51,7 @@ export default async function OGImage() {
             style={{
               fontSize: 24,
               fontFamily: "Georgia, serif",
-              color: "#8B7E74",
+              color: "#E84A5F",
               letterSpacing: "4px",
               textTransform: "uppercase",
             }}
@@ -64,7 +64,7 @@ export default async function OGImage() {
             style={{
               fontSize: 64,
               fontFamily: "Georgia, serif",
-              color: "#2C2825",
+              color: "#1A1A1A",
               lineHeight: 1.15,
               maxWidth: "900px",
               textAlign: "center",
@@ -78,7 +78,7 @@ export default async function OGImage() {
             style={{
               fontSize: 20,
               fontFamily: "system-ui, sans-serif",
-              color: "#8B7E74",
+              color: "#4A4A4A",
               marginTop: "16px",
             }}
           >

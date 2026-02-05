@@ -8,21 +8,21 @@
    CSS Custom Properties (Design Tokens)
    -------------------------------------------- */
 :root {
-  /* Primary Palette — Light Mode */
-  --color-stone: #2C2825;
-  --color-linen: #F7F5F2;
-  --color-clay: #C4A98C;
+  /* Primary Palette — Light Mode (Modern Bright: Black, White, Pink) */
+  --color-stone: #1A1A1A;       /* Black - primary text */
+  --color-linen: #FFFFFF;       /* Pure White - background */
+  --color-clay: #E84A5F;        /* Vibrant Pink/Red - accent/CTA */
   
   /* Supporting Palette */
-  --color-fog: #E8E4DF;
-  --color-dusk: #8B7E74;
-  --color-petal: #D4B5A0;
-  --color-mist: #B8A99E;
+  --color-fog: #FDF2F4;         /* Soft Blush - cards/sections */
+  --color-dusk: #4A4A4A;        /* Dark Gray - secondary text */
+  --color-petal: #F5A3B5;       /* Rose Pink - hover states */
+  --color-mist: #8C7B75;        /* Warm Gray - tertiary text */
   
   /* Functional Colors */
-  --color-ink: #1A1817;
-  --color-error: #9B4D4D;
-  --color-success: #6B7B6B;
+  --color-ink: #000000;         /* Pure Black - high contrast */
+  --color-error: #DC3545;       /* Bright Red - errors */
+  --color-success: #28A745;     /* Bright Green - success */
   
   /* Typography */
   --font-serif: var(--font-cormorant), Georgia, 'Times New Roman', serif;
@@ -50,21 +50,21 @@
   --radius-xl: 1.5rem;
   
   /* Shadow System */
-  --shadow-xs: 0 1px 2px 0 rgba(44, 40, 37, 0.05);
-  --shadow-sm: 0 1px 3px 0 rgba(44, 40, 37, 0.08), 0 1px 2px -1px rgba(44, 40, 37, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(44, 40, 37, 0.08), 0 2px 4px -2px rgba(44, 40, 37, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(44, 40, 37, 0.08), 0 4px 6px -4px rgba(44, 40, 37, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(44, 40, 37, 0.08), 0 8px 10px -6px rgba(44, 40, 37, 0.04);
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
   
   /* Glass Effect Tokens */
-  --glass-bg: rgba(247, 245, 242, 0.7);
-  --glass-border: rgba(44, 40, 37, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.08);
   --glass-blur: 12px;
   
   /* Gradient Tokens */
-  --gradient-hero: linear-gradient(135deg, rgba(247, 245, 242, 0.95) 0%, rgba(232, 228, 223, 0.85) 100%);
-  --gradient-section: linear-gradient(180deg, rgba(247, 245, 242, 0.4) 0%, rgba(232, 228, 223, 0.2) 100%);
-  --gradient-overlay: linear-gradient(135deg, rgba(196, 169, 140, 0.03) 0%, rgba(212, 181, 160, 0.02) 100%);
+  --gradient-hero: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(253, 242, 244, 0.85) 100%);
+  --gradient-section: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(253, 242, 244, 0.2) 100%);
+  --gradient-overlay: linear-gradient(135deg, rgba(232, 74, 95, 0.03) 0%, rgba(245, 163, 181, 0.02) 100%);
   
   /* Max Widths */
   --max-site: 75rem;     /* 1200px */
@@ -86,34 +86,34 @@
    Warm, muted palette — not harsh black/white
    -------------------------------------------- */
 .dark {
-  /* Primary Palette — Dark Mode */
-  --color-stone: #F5F3F0;        /* Light warm white for text */
-  --color-linen: #1C1A18;        /* Deep warm charcoal for background */
-  --color-clay: #D4B89C;         /* Slightly lighter clay for accents */
+  /* Primary Palette — Dark Mode (Modern Elegant: Inverted) */
+  --color-stone: #F8F8F8;        /* Off-white for text */
+  --color-linen: #0D0D0D;        /* Rich Black for background */
+  --color-clay: #FF6B7A;         /* Bright Pink for accents */
   
   /* Supporting Palette */
-  --color-fog: #262320;          /* Darker section backgrounds */
-  --color-dusk: #9A8E84;         /* Lighter muted for secondary text */
-  --color-petal: #BFA58C;        /* Muted petal for hovers */
-  --color-mist: #7A6E65;
+  --color-fog: #1A1A1A;          /* Dark charcoal for cards/sections */
+  --color-dusk: #B0B0B0;         /* Light gray for secondary text */
+  --color-petal: #E85A6B;        /* Darker pink for hovers */
+  --color-mist: #808080;         /* Medium gray for tertiary */
   
   /* Functional Colors */
-  --color-ink: #FAF8F6;
+  --color-ink: #FFFFFF;          /* Pure white for high contrast */
   
   /* Dark Mode Shadows & Glass */
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.25), 0 1px 2px -1px rgba(0, 0, 0, 0.15);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -2px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -4px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
-  --glass-bg: rgba(28, 26, 24, 0.7);
-  --glass-border: rgba(245, 243, 240, 0.1);
-  --gradient-hero: linear-gradient(135deg, rgba(28, 26, 24, 0.95) 0%, rgba(38, 35, 32, 0.85) 100%);
-  --gradient-section: linear-gradient(180deg, rgba(28, 26, 24, 0.4) 0%, rgba(38, 35, 32, 0.2) 100%);
-  --gradient-overlay: linear-gradient(135deg, rgba(212, 181, 160, 0.05) 0%, rgba(196, 169, 140, 0.03) 100%);
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.35), 0 1px 2px -1px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.35), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.35), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.25);
+  --glass-bg: rgba(13, 13, 13, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --gradient-hero: linear-gradient(135deg, rgba(13, 13, 13, 0.95) 0%, rgba(26, 26, 26, 0.85) 100%);
+  --gradient-section: linear-gradient(180deg, rgba(13, 13, 13, 0.4) 0%, rgba(26, 26, 26, 0.2) 100%);
+  --gradient-overlay: linear-gradient(135deg, rgba(255, 107, 122, 0.05) 0%, rgba(232, 74, 95, 0.03) 100%);
   
-  --color-error: #C47070;        /* Lighter error for dark bg */
-  --color-success: #8A9B8A;      /* Lighter success for dark bg */
+  --color-error: #FF6B6B;        /* Bright red for dark bg */
+  --color-success: #4CAF50;      /* Bright green for dark bg */
 }
 
 /* --------------------------------------------
@@ -446,13 +446,13 @@ select:focus-visible {
 
 @keyframes button-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(196, 169, 140, 0.6);
+    box-shadow: 0 0 0 0 rgba(232, 74, 95, 0.6);
   }
   70% {
-    box-shadow: 0 0 0 12px rgba(196, 169, 140, 0);
+    box-shadow: 0 0 0 12px rgba(232, 74, 95, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(196, 169, 140, 0);
+    box-shadow: 0 0 0 0 rgba(232, 74, 95, 0);
   }
 }
 
