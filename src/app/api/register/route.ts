@@ -9,6 +9,24 @@ interface RegistrationData {
   consent: boolean;
 }
 
+// Google Form configuration
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeUbspixRbpABqX1MMAisODkcx1sEvfOvkU_NkgydFi0D6JRA/formResponse';
+
+const GOOGLE_FORM_FIELDS = {
+  name: 'entry.1592669925',
+  email: 'entry.564662101',
+  message: 'entry.1060064797',
+  source: 'entry.968858214',
+  consent: 'entry.125654770',
+} as const;
+
+// Map form source values to exact Google Form option text
+const SOURCE_TO_GOOGLE: Record<string, string> = {
+  instagram: 'Instagram',
+  friend: 'Friend or word of mouth',
+  other: 'Other',
+};
+
 /**
  * Generate HTML email template for registration notification
  */
@@ -23,13 +41,13 @@ function generateEmailTemplate(data: RegistrationData): string {
         <meta charset="utf-8">
         <title>New Event Registration</title>
         <style>
-          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1A1A1A; }
           .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+          .header { background: #FDF2F4; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
           .field { margin-bottom: 15px; }
-          .label { font-weight: 600; color: #555; }
+          .label { font-weight: 600; color: #4A4A4A; }
           .value { margin-top: 5px; }
-          .message-box { background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 4px solid #007bff; }
+          .message-box { background: #FDF2F4; padding: 15px; border-radius: 6px; border-left: 4px solid #E84A5F; }
         </style>
       </head>
       <body>
@@ -67,6 +85,31 @@ function generateEmailTemplate(data: RegistrationData): string {
       </body>
     </html>
   `;
+}
+
+/**
+ * Submit to Google Form (for Google Sheets)
+ */
+async function submitToGoogleForm(data: RegistrationData): Promise<void> {
+  const formData = new URLSearchParams();
+  formData.append(GOOGLE_FORM_FIELDS.name, data.name);
+  formData.append(GOOGLE_FORM_FIELDS.email, data.email);
+  if (data.message) {
+    formData.append(GOOGLE_FORM_FIELDS.message, data.message);
+  }
+  if (data.source && SOURCE_TO_GOOGLE[data.source]) {
+    formData.append(GOOGLE_FORM_FIELDS.source, SOURCE_TO_GOOGLE[data.source]);
+  }
+  // Consent is a radio button: "Yes" or "No"
+  formData.append(GOOGLE_FORM_FIELDS.consent, data.consent ? 'Yes' : 'No');
+
+  await fetch(GOOGLE_FORM_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: formData.toString(),
+  });
 }
 
 /**
@@ -151,6 +194,15 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
+    // Submit to Google Form (for Google Sheets)
+    try {
+      await submitToGoogleForm(cleanData);
+      console.log("Google Form submission successful");
+    } catch (googleError) {
+      console.error("Failed to submit to Google Form:", googleError);
+      // Continue with registration even if Google Form fails
+    }
+
     // Send notification email via Resend
     try {
       await sendNotificationEmail(cleanData);
@@ -158,7 +210,6 @@ export async function POST(request: NextRequest) {
     } catch (emailError) {
       console.error("Failed to send notification email:", emailError);
       // Continue with registration even if email fails
-      // In production, you might want to queue this for retry
     }
 
     // TODO: In production, implement:
