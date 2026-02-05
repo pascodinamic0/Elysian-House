@@ -15,8 +15,8 @@ interface UseScrollLockReturn {
   isLocked: boolean;
   /** Function to scroll to the next section and unlock */
   scrollToNext: () => void;
-  /** Whether user prefers reduced motion */
-  prefersReducedMotion: boolean;
+  /** Whether user prefers reduced motion (null during SSR/hydration) */
+  prefersReducedMotion: boolean | null;
 }
 
 /**
