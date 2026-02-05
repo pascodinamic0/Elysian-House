@@ -20,7 +20,7 @@ interface TextProps {
 }
 
 const sizeClasses: Record<TextSize, string> = {
-  large: "text-[1.375rem] leading-[1.7] md:text-[1.5rem] md:leading-[1.75]",
+  large: "text-[1.25rem] leading-[1.7] md:text-[1.5rem] md:leading-[1.75]",
   base: "text-[1.125rem] leading-[1.75]",
   small: "text-[1rem] leading-[1.7]",
 };

@@ -56,7 +56,7 @@ export function EventIntro() {
             <Button href="/register" size="large">
               {cta.primary}
             </Button>
-            <span className="text-xs text-[var(--color-stone)] tracking-wide">
+            <span className="text-base text-[var(--color-dusk)] tracking-wide font-medium">
               {eventIntro.date}
             </span>
           </div>

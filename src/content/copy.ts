@@ -50,7 +50,7 @@ export const homePage = {
     subtitle: "A Gathering for Women Ready to Bloom",
     description:
       "Not a seminar. Not a performance. A room. A gathering for women who are tired of carrying everything alone, and ready to be witnessed, held, and reminded of who they're becoming.",
-    date: "February 28, 2026 · Millennium Airport Hotel, Dubai",
+    date: "Feb 28 · Millennium Airport Hotel, Dubai",
   },
   
   essence: {
