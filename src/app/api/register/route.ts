@@ -4,8 +4,10 @@ import { Resend } from "resend";
 interface RegistrationData {
   name: string;
   email: string;
-  message?: string;
-  source?: string;
+  phone: string;
+  hoping?: string;
+  anything?: string;
+  contactMethods?: string[];
   consent: boolean;
 }
 
@@ -26,15 +28,18 @@ const GOOGLE_FORM_FIELDS = {
  * Generate HTML email template for registration notification
  */
 function generateEmailTemplate(data: RegistrationData): string {
-  const sourceDisplay = data.source || "Not specified";
-  const messageDisplay = data.message || "No additional message provided";
+  const hopingDisplay = data.hoping || "Not provided";
+  const anythingDisplay = data.anything || "Not provided";
+  const contactDisplay = data.contactMethods?.length 
+    ? data.contactMethods.map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(", ")
+    : "Not specified";
   
   return `
     <!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
-        <title>New Event Registration</title>
+        <title>New Workshop Registration</title>
         <style>
           body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1A1A1A; }
           .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -48,8 +53,8 @@ function generateEmailTemplate(data: RegistrationData): string {
       <body>
         <div class="container">
           <div class="header">
-            <h1>New Event Registration</h1>
-            <p>Someone has registered for the Bloom gathering event.</p>
+            <h1>New Workshop Registration</h1>
+            <p>Someone has registered for the Transform & Thrive Workshop.</p>
           </div>
           
           <div class="field">
@@ -63,13 +68,23 @@ function generateEmailTemplate(data: RegistrationData): string {
           </div>
           
           <div class="field">
-            <div class="label">How they heard about us:</div>
-            <div class="value">${sourceDisplay}</div>
+            <div class="label">Phone Number:</div>
+            <div class="value">${data.phone}</div>
           </div>
           
           <div class="field">
-            <div class="label">What brings them to this gathering:</div>
-            <div class="message-box">${messageDisplay}</div>
+            <div class="label">Preferred Contact Method:</div>
+            <div class="value">${contactDisplay}</div>
+          </div>
+          
+          <div class="field">
+            <div class="label">What they're hoping to get out of this session:</div>
+            <div class="message-box">${hopingDisplay}</div>
+          </div>
+          
+          <div class="field">
+            <div class="label">Anything to know before meeting:</div>
+            <div class="message-box">${anythingDisplay}</div>
           </div>
           
           <div class="field">
@@ -82,24 +97,28 @@ function generateEmailTemplate(data: RegistrationData): string {
   `;
 }
 
+// Map contact method values to exact Google Form option text
+const CONTACT_METHOD_MAP: Record<string, string> = {
+  whatsapp: 'WhatsApp',
+  telephone: 'Telephone',
+  email: 'Email',
+};
+
 /**
  * Submit to Google Form (for Google Sheets)
- * Maps website form fields to Google Form fields:
- * - name → Name
- * - email → Email
- * - message → "What are you hoping to get out of this session?"
- * - consent → "I understand this is a half day..." checkbox (value: "Yes")
- * - Contact method defaults to "Email"
- * - Phone is left empty (not collected on website form)
  */
 async function submitToGoogleForm(data: RegistrationData): Promise<void> {
   const formData = new URLSearchParams();
   formData.append(GOOGLE_FORM_FIELDS.name, data.name);
   formData.append(GOOGLE_FORM_FIELDS.email, data.email);
+  formData.append(GOOGLE_FORM_FIELDS.phone, data.phone);
   
-  // Map "message" (what brings you) to "What are you hoping to get out of this session?"
-  if (data.message) {
-    formData.append(GOOGLE_FORM_FIELDS.hopingToGet, data.message);
+  if (data.hoping) {
+    formData.append(GOOGLE_FORM_FIELDS.hopingToGet, data.hoping);
+  }
+  
+  if (data.anything) {
+    formData.append(GOOGLE_FORM_FIELDS.anythingToKnow, data.anything);
   }
   
   // Consent checkbox - only append if true (checkbox value is "Yes")
@@ -107,8 +126,15 @@ async function submitToGoogleForm(data: RegistrationData): Promise<void> {
     formData.append(GOOGLE_FORM_FIELDS.consent, 'Yes');
   }
   
-  // Default contact method to Email since that's what we have
-  formData.append(GOOGLE_FORM_FIELDS.contactMethod, 'Email');
+  // Contact methods - append each selected method
+  if (data.contactMethods?.length) {
+    for (const method of data.contactMethods) {
+      const googleValue = CONTACT_METHOD_MAP[method];
+      if (googleValue) {
+        formData.append(GOOGLE_FORM_FIELDS.contactMethod, googleValue);
+      }
+    }
+  }
 
   await fetch(GOOGLE_FORM_URL, {
     method: 'POST',
@@ -179,6 +205,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!data.phone || typeof data.phone !== "string" || !data.phone.trim()) {
+      return NextResponse.json(
+        { error: "Phone number is required" },
+        { status: 400 }
+      );
+    }
+
     if (!data.consent) {
       return NextResponse.json(
         { error: "Consent is required" },
@@ -187,11 +220,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Prepare clean data
-    const cleanData = {
+    const cleanData: RegistrationData = {
       name: data.name.trim(),
       email: data.email.trim().toLowerCase(),
-      message: data.message?.trim() || "",
-      source: data.source || "",
+      phone: data.phone.trim(),
+      hoping: data.hoping?.trim() || "",
+      anything: data.anything?.trim() || "",
+      contactMethods: data.contactMethods || [],
       consent: data.consent,
     };
 

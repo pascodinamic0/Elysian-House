@@ -5,7 +5,6 @@ import {
   Button,
   Input,
   Textarea,
-  Select,
   Checkbox,
 } from "@/components/ui";
 import { registerPage } from "@/content/copy";
@@ -13,14 +12,17 @@ import { registerPage } from "@/content/copy";
 interface FormData {
   name: string;
   email: string;
-  message: string;
-  source: string;
+  phone: string;
+  hoping: string;
+  anything: string;
+  contactMethods: string[];
   consent: boolean;
 }
 
 interface FormErrors {
   name?: string;
   email?: string;
+  phone?: string;
   consent?: string;
   form?: string;
 }
@@ -38,8 +40,10 @@ export function RegistrationForm({ onSuccess }: RegistrationFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    message: "",
-    source: "",
+    phone: "",
+    hoping: "",
+    anything: "",
+    contactMethods: [],
     consent: false,
   });
 
@@ -57,6 +61,10 @@ export function RegistrationForm({ onSuccess }: RegistrationFormProps) {
       newErrors.email = errorMessages.emailRequired;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = errorMessages.emailInvalid;
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = errorMessages.phoneRequired;
     }
 
     if (!formData.consent) {
@@ -114,6 +122,15 @@ export function RegistrationForm({ onSuccess }: RegistrationFormProps) {
     }
   };
 
+  const handleContactMethodChange = (value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      contactMethods: prev.contactMethods.includes(value)
+        ? prev.contactMethods.filter((m) => m !== value)
+        : [...prev.contactMethods, value],
+    }));
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -149,23 +166,61 @@ export function RegistrationForm({ onSuccess }: RegistrationFormProps) {
         autoComplete="email"
       />
 
-      <Textarea
-        label={form.messageLabel}
-        name="message"
-        placeholder={form.messagePlaceholder}
-        value={formData.message}
+      <Input
+        label={form.phoneLabel}
+        name="phone"
+        type="tel"
+        placeholder={form.phonePlaceholder}
+        value={formData.phone}
         onChange={handleChange}
-        rows={4}
+        error={errors.phone}
+        required
+        autoComplete="tel"
+      />
+
+      <Textarea
+        label={form.hopingLabel}
+        name="hoping"
+        placeholder={form.hopingPlaceholder}
+        value={formData.hoping}
+        onChange={handleChange}
+        rows={3}
         maxLength={500}
       />
 
-      <Select
-        label={form.sourceLabel}
-        name="source"
-        options={form.sourceOptions}
-        value={formData.source}
+      <Textarea
+        label={form.anythingLabel}
+        name="anything"
+        placeholder={form.anythingPlaceholder}
+        value={formData.anything}
         onChange={handleChange}
+        rows={3}
+        maxLength={500}
       />
+
+      <div className="flex flex-col gap-3">
+        <label className="text-[0.9375rem] font-medium text-[var(--color-text)]">
+          {form.contactLabel}
+        </label>
+        <div className="flex flex-col gap-2">
+          {form.contactOptions.map((option) => (
+            <label
+              key={option.value}
+              className="flex items-center gap-3 cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                checked={formData.contactMethods.includes(option.value)}
+                onChange={() => handleContactMethodChange(option.value)}
+                className="w-5 h-5 rounded border-[var(--color-border)] accent-[var(--color-primary)]"
+              />
+              <span className="text-[0.9375rem] text-[var(--color-text)]">
+                {option.label}
+              </span>
+            </label>
+          ))}
+        </div>
+      </div>
 
       <Checkbox
         label={form.consentLabel}
