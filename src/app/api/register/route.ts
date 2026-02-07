@@ -9,23 +9,18 @@ interface RegistrationData {
   consent: boolean;
 }
 
-// Google Form configuration
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeUbspixRbpABqX1MMAisODkcx1sEvfOvkU_NkgydFi0D6JRA/formResponse';
+// Google Form configuration (Transform & Thrive Workshop)
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeMPWJ_9fnTT3Ve32bLf21Xm6LJA_UZ5B99v6dzRp8fIz-yfQ/formResponse';
 
 const GOOGLE_FORM_FIELDS = {
-  name: 'entry.1592669925',
-  email: 'entry.564662101',
-  message: 'entry.1060064797',
-  source: 'entry.968858214',
-  consent: 'entry.125654770',
+  name: 'entry.2092238618',
+  email: 'entry.1556369182',
+  phone: 'entry.119911029',
+  hopingToGet: 'entry.599513454',
+  anythingToKnow: 'entry.1273124294',
+  consent: 'entry.2109138769',
+  contactMethod: 'entry.1100517712',
 } as const;
-
-// Map form source values to exact Google Form option text
-const SOURCE_TO_GOOGLE: Record<string, string> = {
-  instagram: 'Instagram',
-  friend: 'Friend or word of mouth',
-  other: 'Other',
-};
 
 /**
  * Generate HTML email template for registration notification
@@ -89,19 +84,31 @@ function generateEmailTemplate(data: RegistrationData): string {
 
 /**
  * Submit to Google Form (for Google Sheets)
+ * Maps website form fields to Google Form fields:
+ * - name → Name
+ * - email → Email
+ * - message → "What are you hoping to get out of this session?"
+ * - consent → "I understand this is a half day..." checkbox (value: "Yes")
+ * - Contact method defaults to "Email"
+ * - Phone is left empty (not collected on website form)
  */
 async function submitToGoogleForm(data: RegistrationData): Promise<void> {
   const formData = new URLSearchParams();
   formData.append(GOOGLE_FORM_FIELDS.name, data.name);
   formData.append(GOOGLE_FORM_FIELDS.email, data.email);
+  
+  // Map "message" (what brings you) to "What are you hoping to get out of this session?"
   if (data.message) {
-    formData.append(GOOGLE_FORM_FIELDS.message, data.message);
+    formData.append(GOOGLE_FORM_FIELDS.hopingToGet, data.message);
   }
-  if (data.source && SOURCE_TO_GOOGLE[data.source]) {
-    formData.append(GOOGLE_FORM_FIELDS.source, SOURCE_TO_GOOGLE[data.source]);
+  
+  // Consent checkbox - only append if true (checkbox value is "Yes")
+  if (data.consent) {
+    formData.append(GOOGLE_FORM_FIELDS.consent, 'Yes');
   }
-  // Consent is a radio button: "Yes" or "No"
-  formData.append(GOOGLE_FORM_FIELDS.consent, data.consent ? 'Yes' : 'No');
+  
+  // Default contact method to Email since that's what we have
+  formData.append(GOOGLE_FORM_FIELDS.contactMethod, 'Email');
 
   await fetch(GOOGLE_FORM_URL, {
     method: 'POST',
