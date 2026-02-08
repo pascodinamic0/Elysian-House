@@ -109,6 +109,10 @@ const CONTACT_METHOD_MAP: Record<string, string> = {
  */
 async function submitToGoogleForm(data: RegistrationData): Promise<void> {
   const formData = new URLSearchParams();
+  
+  // Google Form has "Collect email addresses" enabled, so we need emailAddress param
+  formData.append('emailAddress', data.email);
+  
   formData.append(GOOGLE_FORM_FIELDS.name, data.name);
   formData.append(GOOGLE_FORM_FIELDS.email, data.email);
   formData.append(GOOGLE_FORM_FIELDS.phone, data.phone);
