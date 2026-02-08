@@ -24,8 +24,17 @@ export default function AboutPage() {
       <Header />
       <main id="main-content" className="pt-20 md:pt-24">
         {/* Hero */}
-        <Section spacing="large">
-          <Container width="narrow" className="text-center">
+        <Section spacing="large" className="relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/images/millennium-airport-hotel.png)" }}
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-[var(--color-linen)]/50"
+            aria-hidden
+          />
+          <Container width="narrow" className="relative z-10 text-center">
             <ScrollReveal>
               <Heading level={1} size="display">
                 {hero.headline}
