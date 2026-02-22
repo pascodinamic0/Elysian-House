@@ -19,7 +19,7 @@ export const eventConfig = {
   subtitle: "A Gathering for Women Ready to Bloom",
   date: "February 28, 2026",
   location: "Dubai",
-  venue: "Millennium Airport Hotel",
+  venue: "Dubai",
   time: "2:00 PM prompt",
   price: "Complimentary",
   capacity: "Limited gathering",
@@ -50,7 +50,7 @@ export const homePage = {
     subtitle: "A Gathering for Women Ready to Bloom",
     description:
       "Not a seminar. Not a performance. A room. A gathering for women who are tired of carrying everything alone, and ready to be witnessed, held, and reminded of who they're becoming.",
-    date: "Feb 28 · Millennium Airport Hotel, Dubai",
+    date: "Feb 28 · Dubai",
   },
   
   essence: {
@@ -119,7 +119,7 @@ export const gatheringPage = {
     date: "February 28, 2026",
     time: "2:00 PM prompt",
     location: "Dubai",
-    venue: "Millennium Airport Hotel",
+    venue: "Dubai",
     parking: "Free parking",
     duration: "Half-day gathering",
     price: "Complimentary",

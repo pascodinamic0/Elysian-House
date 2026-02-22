@@ -39,7 +39,7 @@
 
 ### Technical
 - [x] **Domain:** TBD — architecture domain-agnostic
-- [x] **Event:** February 28, 2026 — Millennium Airport Hotel, Dubai — 2:00 PM prompt
+- [x] **Event:** February 28, 2026 — Dubai — 2:00 PM prompt
 - [x] **Capacity:** Soft cap with curated RSVP system (waitlist + manual approval)
 
 ---

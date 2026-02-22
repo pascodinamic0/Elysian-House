@@ -82,7 +82,7 @@ export default async function OGImage() {
               marginTop: "16px",
             }}
           >
-            Transform & Thrive · February 28, 2026 · Millennium Airport Hotel, Dubai
+            Transform & Thrive · February 28, 2026 · Dubai
           </div>
         </div>
       </div>
