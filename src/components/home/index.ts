@@ -1,6 +1,6 @@
 export { Hero } from "./hero";
-export { NarrativeSection } from "./narrative-section";
-export { EventIntro } from "./event-intro";
-export { Essence } from "./essence";
+export { WhatIs } from "./what-is";
+export { CoreThemes } from "./core-themes";
+export { HowWomenExperience } from "./how-women-experience";
 export { Closing } from "./closing";
 export { ScrollReveal, ScrollRevealGroup, ScrollRevealItem } from "./scroll-reveal";

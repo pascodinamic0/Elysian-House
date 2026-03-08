@@ -14,7 +14,7 @@ import {
   Logistics,
 } from "@/components/gathering";
 import { ImageHeroBackground } from "@/components/gathering/video-hero-background";
-import { gatheringPage, homePage } from "@/content/copy";
+import { gatheringPage } from "@/content/copy";
 
 export const metadata: Metadata = {
   title: "The Gathering",
@@ -94,7 +94,7 @@ export default function GatheringPage() {
           <Container width="narrow" className="text-center">
             <ScrollReveal>
               <Button href="/register" size="large">
-                {homePage.cta.primary}
+                Request Invitation
               </Button>
             </ScrollReveal>
           </Container>

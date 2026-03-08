@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Container, Button, NavLink, ThemeToggle } from "@/components/ui";
+import { Container, NavLink, ThemeToggle } from "@/components/ui";
 import { navigation, siteConfig } from "@/content/copy";
 
 /**
@@ -16,14 +16,13 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll behavior
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Check initial state
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -69,9 +68,6 @@ export function Header() {
                 {link.label}
               </NavLink>
             ))}
-            <Button href={navigation.cta.href} size="default">
-              {navigation.cta.label}
-            </Button>
             <div className="ml-2 pl-4 border-l border-[var(--color-dusk)]/20">
               <ThemeToggle />
             </div>
@@ -79,9 +75,6 @@ export function Header() {
 
           {/* Mobile Actions */}
           <div className="flex items-center gap-3 md:hidden">
-            <Button href={navigation.cta.href} size="default" className="hidden sm:inline-flex">
-              {navigation.cta.label}
-            </Button>
             <div className="pl-3 border-l border-[var(--color-dusk)]/20">
               <ThemeToggle />
             </div>
@@ -135,9 +128,6 @@ export function Header() {
                 {link.label}
               </NavLink>
             ))}
-            <Button href={navigation.cta.href} className="mt-2">
-              {navigation.cta.label}
-            </Button>
           </div>
         </nav>
       </Container>

@@ -13,7 +13,7 @@ import { aboutPage, siteConfig } from "@/content/copy";
 
 export const metadata: Metadata = {
   title: "About",
-  description: aboutPage.philosophy.paragraphs[0],
+  description: aboutPage.philosophy.paragraphs[0] || "About Elysian House",
 };
 
 export default function AboutPage() {

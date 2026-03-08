@@ -1,11 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Container, Text, Link } from "@/components/ui";
 import { footer, siteConfig } from "@/content/copy";
 import { cn } from "@/lib/utils";
-import { useTypewriter } from "@/hooks/use-typewriter";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -26,20 +23,10 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-const staticPrefix: string = "Are you a woman, living in Dubai and ready to";
-const rotatingWords: readonly string[] = ["start..", "scale..", "conquer.."];
-
 /**
  * Footer — Site footer
  */
 export function Footer() {
-  const prefersReducedMotion = useReducedMotion();
-  const { displayedText, isTypingComplete } = useTypewriter({
-    rotatingWords,
-    typewriterSpeed: 80,
-    pauseAfterWord: 1500,
-  });
-
   return (
     <footer className="bg-[var(--color-fog)] border-t-2 border-[var(--color-dusk)]/30 py-16 md:py-20 transition-base mt-12 md:mt-16">
       <Container>
@@ -56,19 +43,8 @@ export function Footer() {
               />
               {siteConfig.name}
             </span>
-            <p className="font-sans transition-colors duration-300 text-[1rem] leading-[1.7] text-[var(--color-dusk)] max-w-[40ch]">
-              <span>{staticPrefix} </span>
-              <span className="inline-block min-w-[9ch] text-left">
-                {displayedText}
-                {!prefersReducedMotion && !isTypingComplete && (
-                  <motion.span
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.6, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    |
-                  </motion.span>
-                )}
-              </span>
+            <p className="font-sans transition-colors duration-300 text-[1rem] leading-[1.7] text-[var(--color-dusk)] max-w-[50ch]">
+              {footer.tagline}
             </p>
           </div>
 

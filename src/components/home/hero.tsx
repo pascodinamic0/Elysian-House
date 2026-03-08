@@ -1,50 +1,19 @@
 "use client";
 
-import { useState, useEffect, type ReactElement } from "react";
+import { type ReactElement } from "react";
 import { motion } from "framer-motion";
-import { Container, Heading } from "@/components/ui";
-
-const staticPrefix: string = "A quiet room for women who are ready to";
-const rotatingWords: readonly string[] = ["start..", "scale..", "conquer.."];
-const typewriterSpeed: number = 80; // ms per letter
-const pauseAfterWord: number = 1500; // ms before typing next word
+import { Container, Heading, Button } from "@/components/ui";
+import { homePage } from "@/content/copy";
 
 /**
- * Hero — Opening section with primary statement
- * Features subtle floating animation and breathing rhythm
- * Ending words type letter by letter: start.. → scale.. → conquer.. (loop)
+ * Hero — Opening section with brand statement and CTA
  */
 export function Hero(): ReactElement {
-  const prefersReducedMotion = typeof window !== "undefined" 
-    ? window.matchMedia("(prefers-reduced-motion: reduce)").matches 
-    : false;
-  
-  const [wordIndex, setWordIndex] = useState<number>(0);
-  const [visibleLength, setVisibleLength] = useState<number>(0);
-
-  const currentWord: string = rotatingWords[wordIndex];
-  const isTypingComplete: boolean = visibleLength >= currentWord.length;
-  const displayedText: string = prefersReducedMotion
-    ? currentWord
-    : currentWord.slice(0, visibleLength);
-
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-
-    if (visibleLength < currentWord.length) {
-      const id = setTimeout(() => {
-        setVisibleLength((prev) => prev + 1);
-      }, typewriterSpeed);
-      return () => clearTimeout(id);
-    }
-
-    // Word complete: pause then move to next word
-    const id = setTimeout(() => {
-      setWordIndex((i) => (i + 1) % rotatingWords.length);
-      setVisibleLength(0);
-    }, pauseAfterWord);
-    return () => clearTimeout(id);
-  }, [prefersReducedMotion, currentWord, visibleLength]);
+  const { hero } = homePage;
+  const prefersReducedMotion =
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false;
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-start overflow-hidden">
@@ -55,7 +24,7 @@ export function Hero(): ReactElement {
         aria-hidden="true"
       />
       {/* Background image overlay */}
-      <div 
+      <div
         className="hero-background-image absolute inset-0 opacity-[0.35] dark:opacity-[0.4]"
         style={{
           backgroundImage: "url('/images/Black and white .jpg')",
@@ -64,7 +33,7 @@ export function Hero(): ReactElement {
         aria-hidden="true"
       />
       {/* Subtle texture overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
@@ -72,12 +41,13 @@ export function Hero(): ReactElement {
         aria-hidden="true"
       />
 
-      {/* Subtle floating orb - decorative ambient element */}
+      {/* Floating orb */}
       {!prefersReducedMotion && (
         <motion.div
           className="absolute w-[500px] h-[500px] rounded-full opacity-[0.05]"
           style={{
-            background: "radial-gradient(circle, var(--color-clay) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, var(--color-clay) 0%, transparent 70%)",
             filter: "blur(80px)",
             boxShadow: "0 0 100px rgba(232, 74, 95, 0.1)",
           }}
@@ -94,7 +64,7 @@ export function Hero(): ReactElement {
           aria-hidden="true"
         />
       )}
-      
+
       <Container className="relative z-10 text-left">
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
@@ -104,37 +74,29 @@ export function Hero(): ReactElement {
             delay: 0.3,
             ease: [0.16, 1, 0.3, 1],
           }}
+          className="flex flex-col gap-6"
         >
-          {/* Subtle breathing animation on the headline */}
-          <motion.div
-            animate={prefersReducedMotion ? {} : {
-              scale: [1, 1.005, 1],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+          <Heading
+            level={1}
+            size="display"
+            className="max-w-[18ch] drop-shadow-sm font-medium"
           >
-            <Heading
-              level={1}
-              size="display"
-              className="max-w-[18ch] drop-shadow-sm font-medium"
-            >
-              <span>{staticPrefix} </span>
-              <span className="inline-block min-w-[9ch] text-left">
-                {displayedText}
-                {!prefersReducedMotion && !isTypingComplete && (
-                  <motion.span
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.6, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    |
-                  </motion.span>
-                )}
-              </span>
-            </Heading>
-          </motion.div>
+            {hero.headline}
+          </Heading>
+
+          <p className="font-sans text-[1.25rem] md:text-[1.5rem] leading-[1.6] text-[var(--color-stone)] max-w-[40ch] text-balance">
+            {hero.subline}
+          </p>
+
+          <p className="font-serif text-[1.125rem] md:text-[1.25rem] italic text-[var(--color-dusk)] max-w-[45ch]">
+            {hero.description}
+          </p>
+
+          <div className="pt-4">
+            <Button href="/events" size="large">
+              {hero.cta}
+            </Button>
+          </div>
         </motion.div>
       </Container>
 

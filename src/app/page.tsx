@@ -1,9 +1,9 @@
 import { Header, Footer } from "@/components/layout";
 import {
   Hero,
-  NarrativeSection,
-  EventIntro,
-  Essence,
+  WhatIs,
+  CoreThemes,
+  HowWomenExperience,
   Closing,
 } from "@/components/home";
 
@@ -13,9 +13,9 @@ export default function HomePage() {
       <Header />
       <main id="main-content" className="pt-20 md:pt-24">
         <Hero />
-        <NarrativeSection />
-        <EventIntro />
-        <Essence />
+        <WhatIs />
+        <CoreThemes />
+        <HowWomenExperience />
         <Closing />
       </main>
       <Footer />
