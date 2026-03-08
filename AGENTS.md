@@ -2,7 +2,13 @@
 
 ## Cursor Cloud specific instructions
 
-This is a single Next.js 16 application (App Router) called **Elysian House** — an event/brand landing page. There is no database, no Docker, and no monorepo setup.
+This is a single Next.js 16 application (App Router) called **Elysian House** — a reflective-space brand website for women's gatherings.
+
+### Site structure (Phase 1)
+
+Navigation has two pages: **Home** (`/`) and **Events** (`/events`). Legacy routes (`/about`, `/gathering`, `/register`, `/privacy`) still exist but are not linked from the nav.
+
+All website copy lives in `src/content/copy.ts` — this is the single source of truth for all text content.
 
 ### Quick reference
 
