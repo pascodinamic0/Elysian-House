@@ -10,8 +10,8 @@ import {
 import { ScrollReveal } from "@/components/home/scroll-reveal";
 import {
   DetailBlock,
-  DetailBlockWithItems,
   Logistics,
+  WhatHappensFlow,
 } from "@/components/gathering";
 import { ImageHeroBackground } from "@/components/gathering/video-hero-background";
 import { gatheringPage } from "@/content/copy";
@@ -64,8 +64,9 @@ export default function GatheringPage() {
         {/* What Happens */}
         <Section>
           <Container width="narrow">
-            <DetailBlockWithItems
+            <WhatHappensFlow
               headline={whatHappens.headline}
+              subline={whatHappens.subline}
               items={whatHappens.items}
             />
           </Container>
@@ -75,7 +76,9 @@ export default function GatheringPage() {
         <Section background="secondary">
           <Container width="narrow">
             <DetailBlock
+              kicker={whoItsFor.kicker}
               headline={whoItsFor.headline}
+              headlineSize="section"
               text={whoItsFor.text}
               note={whoItsFor.notFor}
             />

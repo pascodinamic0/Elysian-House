@@ -28,9 +28,25 @@ export const homePage = {
 
   whatIs: {
     headline: "What is Elysian House",
-    paragraphs: [
-      "Elysian House is a reflective space for women who have been surviving, succeeding and carrying responsibilities, yet feel disconnected from themselves.",
-      "Through curated gatherings, guided conversations and reflective experiences, Elysian House helps women pause, reconnect and rebuild a life that feels aligned with who they truly are.",
+    points: [
+      {
+        title: "A reflective space",
+        description:
+          "Elysian House is a reflective space for women who have been surviving, succeeding and carrying responsibilities, yet feel disconnected from themselves.",
+        iconId: "home",
+      },
+      {
+        title: "Curated gatherings & conversations",
+        description:
+          "Through curated gatherings, guided conversations and reflective experiences.",
+        iconId: "circle",
+      },
+      {
+        title: "Pause, reconnect & rebuild",
+        description:
+          "Elysian House helps women pause, reconnect and rebuild a life that feels aligned with who they truly are.",
+        iconId: "leaf",
+      },
     ],
   },
 
@@ -40,17 +56,92 @@ export const homePage = {
       {
         title: "Love & Relationships",
         description:
-          "Exploring emotional connection, boundaries and conscious partnership.",
+          "Emotional connection, boundaries, and conscious partnership.",
+        iconId: "heart",
       },
       {
         title: "Healing & Transformation",
         description:
-          "Conversations around emotional healing, breaking patterns and rebuilding self-trust.",
+          "Emotional healing, breaking patterns, and rebuilding self-trust.",
+        iconId: "leaf",
       },
       {
         title: "Personal Growth & Mindset",
         description:
-          "Redefining success, navigating life transitions and living with intention.",
+          "Redefining success, navigating transitions, and living with intention.",
+        iconId: "compass",
+      },
+      {
+        title: "Body & Wellbeing",
+        description:
+          "Embodying presence, rest, and gentle self-care.",
+        iconId: "sparkles",
+      },
+      {
+        title: "Purpose & Meaning",
+        description:
+          "Clarifying values, calling, and what matters most.",
+        iconId: "star",
+      },
+      {
+        title: "Community & Belonging",
+        description:
+          "Sisterhood, being seen, and belonging.",
+        iconId: "circle",
+      },
+      {
+        title: "Creativity & Expression",
+        description:
+          "Reconnecting with play, voice, and authentic self-expression.",
+        iconId: "sparkles",
+      },
+      {
+        title: "Nature & Grounding",
+        description:
+          "Rooting in the body, seasons, and the natural world.",
+        iconId: "leaf",
+      },
+      {
+        title: "Legacy & Contribution",
+        description:
+          "What we pass on, impact, and leaving a meaningful imprint.",
+        iconId: "star",
+      },
+      {
+        title: "Rest & Restoration",
+        description:
+          "Slowing down, rest as practice, and sustainable energy.",
+        iconId: "leaf",
+      },
+      {
+        title: "Inner Wisdom & Intuition",
+        description:
+          "Listening within, trusting yourself, and living from clarity.",
+        iconId: "star",
+      },
+      {
+        title: "Voice & Visibility",
+        description:
+          "Being heard, taking up space, and showing up fully.",
+        iconId: "sparkles",
+      },
+      {
+        title: "Boundaries & Energy",
+        description:
+          "Honouring your limits, saying no, and protecting your peace.",
+        iconId: "heart",
+      },
+      {
+        title: "Life Transitions",
+        description:
+          "Navigating change, uncertainty, and new chapters with grace.",
+        iconId: "compass",
+      },
+      {
+        title: "Self-Compassion",
+        description:
+          "Kindness toward yourself, inner critic work, and worthiness.",
+        iconId: "leaf",
       },
     ],
   },
@@ -62,19 +153,55 @@ export const homePage = {
         title: "Curated Events",
         description: "Guided conversations and community gatherings.",
         comingSoon: false,
+        iconId: "calendar",
       },
       {
         title: "Inner Circles",
         description: "Small groups for deeper reflective discussions.",
         comingSoon: true,
+        iconId: "users",
       },
       {
-        title: "One-on-One Reflection Sessions",
-        description:
-          "Personal conversations to navigate life transitions.",
+        title: "One-on-One Sessions",
+        description: "Personal conversations to navigate life transitions.",
         comingSoon: true,
+        iconId: "user",
+      },
+      {
+        title: "Workshops",
+        description: "Focused sessions on identity, boundaries and intention.",
+        comingSoon: true,
+        iconId: "book-open",
+      },
+      {
+        title: "Day Retreats",
+        description: "Half- or full-day reflective experiences in held space.",
+        comingSoon: true,
+        iconId: "sun",
+      },
+      {
+        title: "Membership",
+        description: "Ongoing access to circles, events and reflective resources.",
+        comingSoon: true,
+        iconId: "sparkles",
       },
     ],
+  },
+
+  essence: {
+    headline: "What happens",
+    items: [
+      "We gather in a room designed for presence.",
+      "We reflect, guided, not lectured.",
+      "We witness each other, seen, not fixed.",
+      "We leave different than we came.",
+    ],
+  },
+
+  readOurArticles: {
+    headline: "Read Our Articles",
+    text: "Stories and reflections from past gatherings — moments of connection, healing and intention we're honoured to share.",
+    cta: "Read Articles",
   },
 
   closing: {
@@ -86,7 +213,7 @@ export const homePage = {
 
 export const eventsPage = {
   hero: {
-    headline: "Events",
+    headline: "Upcoming events",
   },
 
   upcoming: {
@@ -100,7 +227,7 @@ export const eventsPage = {
         description:
           "A gathering of women exploring identity, alignment and the courage to live intentionally.",
         ctaLabel: "Reserve Your Seat",
-        ctaHref: "#",
+        ctaHref: "/gathering",
       },
     ],
   },
@@ -110,9 +237,16 @@ export const eventsPage = {
     events: [
       {
         title: "Transform & Thrive",
+        subtitle: "A Gathering for Women Ready to Bloom",
         date: "February 28, 2026",
+        location: "Dubai",
         summary:
-          "A gathering of women exploring identity, alignment and the courage to live intentionally.",
+          "A gathering of women exploring identity, alignment and the courage to live intentionally. An intimate day of workshops, circle sharing and connection.",
+        highlights: [
+          "Morning intention-setting and breathwork",
+          "Identity and alignment workshops",
+          "Closing circle and integration",
+        ],
         images: ["/images/Group of 2 IMG.jpg"],
         testimonial: null,
       },
@@ -120,9 +254,59 @@ export const eventsPage = {
   },
 };
 
+/** Articles (blog-style stories from past events) — not in navbar, linked from home and footer */
+export const articlesPage = {
+  hero: {
+    headline: "Stories from the House",
+    subline: "Reflections and moments from past gatherings.",
+  },
+  list: {
+    headline: "Articles",
+    empty: "No articles yet. Check back after our next gathering.",
+  },
+};
+
+export const articles = [
+  {
+    slug: "transform-thrive-february-2026",
+    title: "Transform & Thrive — February 2026",
+    subtitle: "A day of intention, alignment and connection",
+    date: "March 2, 2026",
+    excerpt:
+      "An intimate gathering of women in Dubai explored identity, alignment and the courage to live intentionally. Here's what unfolded.",
+    image: "/images/Group of 2 IMG.jpg",
+    content: `We gathered on a late February morning in Dubai — a small circle of women ready to pause and reflect.
+
+The room was set for presence: simple, warm, with space to breathe. We began with grounding and intention-setting. No ice-breakers; instead, a shared commitment to show up as we were.
+
+Through the morning we moved through guided conversations on identity and alignment. What does it mean to live in alignment when you've been surviving rather than choosing? The circle held both vulnerability and clarity. We didn't fix each other; we witnessed.
+
+Workshops wove in breathwork and reflective writing. By the closing circle, the room felt different — lighter, more honest. Women left with a sense of being seen and a clearer thread to pull on.
+
+This is what Elysian House is for: not answers, but the space to ask the questions that matter. We're grateful to everyone who showed up.`,
+  },
+  {
+    slug: "why-we-gather",
+    title: "Why We Gather",
+    subtitle: "On creating space for women to reconnect",
+    date: "February 15, 2026",
+    excerpt:
+      "A short reflection on why Elysian House exists and what we hope happens when women come together in a reflective space.",
+    image: null as string | null,
+    content: `So many women we meet have been surviving, succeeding and carrying — and somewhere along the way, the connection to themselves has faded.
+
+Elysian House exists to create a pause. A room where you're not performing, not fixing, not hustling. Where the only job is to show up and reflect.
+
+We don't lecture. We facilitate. We hold space for the conversations that often don't get airtime: identity, healing, boundaries, intention. The stuff that shapes a life.
+
+When women gather with that intention, something shifts. Not because we have the answers, but because we make room for the questions. That's why we gather.`,
+  },
+];
+
 export const navigation = {
   links: [
     { label: "Home", href: "/" },
+    { label: "The Gathering", href: "/gathering" },
     { label: "Events", href: "/events" },
   ],
   cta: null,
@@ -132,7 +316,9 @@ export const footer = {
   tagline: siteConfig.tagline,
   links: [
     { label: "Home", href: "/" },
+    { label: "The Gathering", href: "/gathering" },
     { label: "Events", href: "/events" },
+    { label: "Articles", href: "/articles" },
     { label: "Instagram", href: siteConfig.instagram, external: true },
   ],
   copyright: `© ${new Date().getFullYear()} Elysian House`,
@@ -182,12 +368,19 @@ export const gatheringPage = {
   },
   whatHappens: {
     headline: "What happens",
-    items: [] as { title: string; text: string }[],
+    subline: "One space, one afternoon — from arrival to closing.",
+    items: [
+      { title: "Arrival & grounding", text: "We open the space with a short grounding practice and intention-setting so everyone can arrive fully." },
+      { title: "Guided conversations", text: "Facilitated circles and prompts around identity, alignment and living with intention — no lecturing, only reflection and sharing." },
+      { title: "Workshops & practices", text: "Breathwork, reflective exercises and small-group discussions to deepen what emerges." },
+      { title: "Closing circle", text: "We close with integration and a shared moment of witnessing before you leave." },
+    ] as { title: string; text: string }[],
   },
   whoItsFor: {
-    headline: "Who this is for",
-    text: "",
-    notFor: "",
+    kicker: "For you",
+    headline: "Is this for you?",
+    text: "Women who have been surviving, succeeding and carrying responsibilities yet feel disconnected from themselves. If you're ready to pause, reconnect and explore a life that feels aligned with who you truly are, this gathering is for you.",
+    notFor: "This is not a therapy session or a substitute for professional support. It is a reflective, community space.",
   },
   logistics: {
     headline: "Details",
@@ -195,10 +388,10 @@ export const gatheringPage = {
     time: "TBD",
     location: "Dubai",
     venue: "Dubai",
-    parking: "",
-    duration: "",
+    parking: "Details shared after registration.",
+    duration: "Half day",
     price: "TBD",
-    note: "",
+    note: "This is a curated gathering. Request your invitation to receive full details.",
   },
 };
 

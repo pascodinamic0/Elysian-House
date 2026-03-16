@@ -266,6 +266,19 @@ p:last-child {
   margin-bottom: 0;
 }
 
+/* Section/card description — single source of truth for body copy in sections */
+.text-section-description {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--color-dusk);
+  max-width: 32ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  transition: color 0.3s var(--ease-out);
+}
+
 a {
   color: inherit;
   text-decoration: none;

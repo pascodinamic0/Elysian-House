@@ -1,9 +1,16 @@
-import { Heading, Text } from "@/components/ui";
+import { Heading, Text, Caption } from "@/components/ui";
 import { ScrollReveal } from "@/components/home/scroll-reveal";
+import { cn } from "@/lib/utils";
+
+type HeadlineSize = "subsection" | "section";
 
 interface DetailBlockProps {
+  /** Optional overline / kicker above the headline */
+  kicker?: string;
   /** Section heading */
   headline: string;
+  /** Visual size of the headline */
+  headlineSize?: HeadlineSize;
   /** Main content text */
   text: string;
   /** Optional secondary text (e.g., "not for" note) */
@@ -13,15 +20,40 @@ interface DetailBlockProps {
 /**
  * DetailBlock — Structured information block
  */
-export function DetailBlock({ headline, text, note }: DetailBlockProps) {
+export function DetailBlock({
+  kicker,
+  headline,
+  headlineSize = "subsection",
+  text,
+  note,
+}: DetailBlockProps) {
+  const isSectionHeading = headlineSize === "section";
+
   return (
     <div className="flex flex-col gap-6 md:gap-8">
       {/* Heading Card */}
       <ScrollReveal>
-        <div className="p-6 md:p-8 bg-[var(--color-linen)] border border-[var(--color-clay)]/15 rounded-xl shadow-sm">
-          <Heading level={2} size="subsection" className="text-[var(--color-stone)] tracking-tight">
-            {headline}
-          </Heading>
+        <div
+          className={cn(
+            "p-6 md:p-8 bg-[var(--color-linen)] border border-[var(--color-clay)]/15 rounded-xl shadow-sm",
+            isSectionHeading &&
+              "border-l-4 border-l-[var(--color-clay)] pl-5 md:pl-7"
+          )}
+        >
+          <div className="flex flex-col gap-2">
+            {kicker && (
+              <Caption className="font-sans text-[0.75rem] font-medium uppercase tracking-[0.12em] text-[var(--color-clay)]">
+                {kicker}
+              </Caption>
+            )}
+            <Heading
+              level={2}
+              size={headlineSize}
+              className="text-[var(--color-stone)] tracking-tight mt-0"
+            >
+              {headline}
+            </Heading>
+          </div>
         </div>
       </ScrollReveal>
       

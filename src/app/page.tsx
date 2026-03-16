@@ -4,6 +4,8 @@ import {
   WhatIs,
   CoreThemes,
   HowWomenExperience,
+  Essence,
+  ReadOurArticles,
   Closing,
 } from "@/components/home";
 
@@ -16,6 +18,8 @@ export default function HomePage() {
         <WhatIs />
         <CoreThemes />
         <HowWomenExperience />
+        <Essence />
+        <ReadOurArticles />
         <Closing />
       </main>
       <Footer />
